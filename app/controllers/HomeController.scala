@@ -1,5 +1,7 @@
 package controllers
 
+import de.htwg.se.pokelite.PokemonLite
+
 import javax.inject._
 import play.api._
 import play.api.mvc._
@@ -10,6 +12,8 @@ import play.api.mvc._
 @Singleton
 class HomeController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
 
+  val gameController = PokemonLite.controller.game;
+
   /**
    * Create an Action to render an HTML page.
    *
@@ -18,6 +22,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    * a path of `/`.
    */
   def index() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.index())
+    Ok(gameController.toString);
   }
 }
