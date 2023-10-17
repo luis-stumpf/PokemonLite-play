@@ -1,0 +1,12 @@
+@(tui: String)
+
+@main("PokemonLite") {
+
+
+    <form method="GET">
+        <input type="text" name="command" />
+        <button type="submit">Submit</button>
+    </form>
+
+    <pre>@Html(tui)</pre>
+}
