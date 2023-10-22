@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 
-<html lang="de">
-    <form method="POST" action="/addPlayers">
-        <label for="player1Name">Player 1 Name: </label>
-        <input type="text" id="player1Name" name="player1Name" required>
-
-        <label for="player2Name">Player 2 Name: </label>
-        <input type="text" id="player2Name" name="player2Name" required>
-
-        <input type="submit" value="Start">
-    </form>
-    <a href="/game">Start</a>
+<html lang="en">
+    <center>
+        <h2>Choose your Names!</h2>
+        <form method="POST" action="/initPlayers">
+            <label for="player1Name">Player 1: </label>
+            <input type="text" id="player1Name" name="player1Name" required>
+            <br>
+            <br>
+            <label for="player2Name">Player 2: </label>
+            <input type="text" id="player2Name" name="player2Name" required>
+            <br>
+            <br>
+            <input type="submit" value="Start">
+        </form>
+    </center>
 </html>

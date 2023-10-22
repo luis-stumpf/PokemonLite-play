@@ -1,0 +1,19 @@
+@(player1Name: String, player2Name: String)
+<!DOCTYPE html>
+
+<html lang="de">
+    <center>
+        <h2>Choose your 3 Pokemons!</h2>
+        <form method="POST" action="/initPokemons">
+            <label for="player1Pokemon">@player1Name: </label>
+            <input type="text" id="player1Pokemon" name="player1Pokemon" required>
+            <br>
+            <br>
+            <label for="player2Pokemon">@player2Name: </label>
+            <input type="text" id="player2Pokemon" name="player2Pokemon" required>
+            <br>
+            <br>
+            <input type="submit" value="Start">
+        </form>
+    </center>
+</html>
