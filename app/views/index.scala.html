@@ -1,5 +1,31 @@
 @()
 
-@main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+<!-- Start Page -->
+<!-- Flow:
+  Start page (index) ->
+  Add Name Player 1 & 2 (playerNames) ->
+  Add Pokemons Player 1 & 2 (playerPokemons) ->
+  Actual Game (game)
+-->
+
+@main("Welcome to PokemonLite") {
+
+  <center> <!-- TO DO: replace deprecated tag later with css or style="text-align: center"-->
+    <h1>Welcome to PokemonLite !</h1>
+    <br>
+    <button>
+      <!-- not sure yet if its prettier to open the rules in a new tab or if its prettier to open them in the same tab? -->
+      <a target ="_blank" href="/rules">Rules and History of PokemonLite</a>
+    </button>
+    <br>
+    <br>
+    <h2> To start the game press the PokeBall !</h2>
+    <br>
+    <button>
+      <a href="/playerNames">Start Game</a>
+      <!-- TO DO: <img ....  image as button icon for startin gthe game-->
+    </button>
+  </center>
+
+
 }
