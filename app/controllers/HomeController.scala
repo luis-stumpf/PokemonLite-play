@@ -1,6 +1,7 @@
 package controllers
 
-import de.htwg.se.pokelite.PokemonLite
+import de.htwg.se.pokelite.controller.impl.Controller
+import de.htwg.se.pokelite.model.states.{DesicionState, FightingState, GameOverState, InitPlayerPokemonState, InitPlayerState, InitState, SwitchPokemonState}
 
 import javax.inject._
 import play.api._
@@ -14,31 +15,76 @@ import play.twirl.api.Html
 @Singleton
 class HomeController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
 
-    val gameController = PokemonLite.controller;
-    val tui = PokemonLite.tui
+    val controller = new Controller();
 
+    def init(): Action[AnyContent] = Action {
+        controller.initPlayers()
+        Redirect(routes.HomeController.field)
+    }
 
-    /**
-     * Create an Action to render an HTML page.
-     *
-     * The configuration in the `routes` file means that this method
-     * will be called when the application receives a `GET` request with
-     * a path of `/`.
-     */
+    def initPlayers(): Action[AnyContent] = Action { request =>
+        val input = request.getQueryString("input").getOrElse("")
+        controller.addPlayer(input)
+        Redirect(routes.HomeController.field)
+    }
 
-    def game() = Action { request =>
+    def initPokemons(): Action[AnyContent] = Action { request =>
+        val input = request.getQueryString("input").getOrElse("")
+        controller.addPokemons(input)
+        Redirect(routes.HomeController.field)
+    }
+
+    def desicion(): Action[AnyContent] = Action { request =>
+        val input = request.getQueryString("input").getOrElse("")
+        controller.nextMove(input)
+        Redirect(routes.HomeController.field)
+    }
+
+    def fighting(): Action[AnyContent] = Action { request =>
+        val input = request.getQueryString("input").getOrElse("")
+        controller.attackWith(input)
+        Redirect(routes.HomeController.field)
+    }
+
+    def switch(): Action[AnyContent] = Action { request =>
+        val input = request.getQueryString("input").getOrElse("")
+        controller.selectPokemon(input)
+        Redirect(routes.HomeController.field)
+    }
+
+    def restartGame(): Action[AnyContent] = Action {
+        controller.restartTheGame()
+        Redirect(routes.HomeController.field)
+    }
+
+    def game(): Action[AnyContent] = Action { request =>
         val command = request.getQueryString("command")
-        command match {
-            case Some(name) => Ok(s"Hallo $name")
-            case None => BadRequest("Name nicht gefunden")
-        }
-        tui.processInputLine(command.getOrElse(""))
-        val gameString = gameController.game.toString;
-        val gameField = views.html.game(gameString)
+        val input: String = command.getOrElse("");
+        if (input.charAt(0) == 'y') controller.undoMove()
+        else if (input.charAt(0) == 'z') controller.redoMove()
+        else
+            controller.game.state match {
+                case InitState() => controller.initPlayers()
+                case InitPlayerState() => controller.addPlayer( input )
+                case InitPlayerPokemonState() => controller.addPokemons( input )
+                case DesicionState() => controller.nextMove( input )
+                case FightingState() => controller.attackWith( input )
+                case SwitchPokemonState() => controller.selectPokemon( input )
+                case GameOverState() => controller.restartTheGame()
+            }
+        val gameString = controller.game.toString;
+        val gameField = views.html.game(gameString, controller.game.state.toString, controller.game.turn)
         Ok(gameField)
     }
 
-    def index() = Action { implicit request: Request[AnyContent] =>
+    def field(): Action[AnyContent] = Action {
+        val gameString = controller.game.toString;
+        val gameField = views.html.field(gameString, controller.game.state.toString, controller.game.turn)
+        Ok(gameField)
+    }
+
+
+    def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
         Ok(views.html.index())
     }
 

@@ -1,4 +1,4 @@
-@(tui: String)
+@(tui: String, gameState: String, turn: Int)
 
 @main("PokemonLite") {
 
@@ -8,5 +8,10 @@
         <button type="submit">Submit</button>
     </form>
 
+    <h1>GameState: @gameState</h1>
+    <h1>Player @turn ist dran</h1>
+
     <pre>@Html(tui)</pre>
+
+    <a href="restart">Restart Game</a>
 }
