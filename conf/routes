@@ -14,9 +14,11 @@ GET     /game                       controllers.HomeController.game
 
 GET     /restart                    controllers.HomeController.restartGame
 
++nocsrf
 POST    /initPlayers                       controllers.HomeController.initPlayers
 GET     /initPlayers                       controllers.HomeController.initPlayers
 
++nocsrf
 POST    /initPokemons                       controllers.HomeController.initPokemons
 GET     /initPokemons                       controllers.HomeController.initPokemons
 
@@ -31,3 +33,4 @@ GET     /field                       controllers.HomeController.field
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
