@@ -5,6 +5,21 @@
 
     <h2>Turn: Player @turn</h2>
 
+    <div class="game-field">
+        <div class="pokemon-status-wrapper-p2">
+            @playerStatus(pokemonName = "Glurak", pokemonHealth ="12")
+        </div>
+        <div class="pokemon-wrapper-p1">
+            @pokemonBack(pokemon = "Brutalanda")
+        </div>
+        <div class="pokemon-wrapper-p2">
+            @pokemonFront(pokemon = "Glurak")
+        </div>
+        <div class="pokemon-status-wrapper-p1">
+        @playerStatus(pokemonName = "shiggy", pokemonHealth ="12")
+        </div>
+    </div>
+
     <pre>@Html(tui)</pre>
 
     <form method="GET">
