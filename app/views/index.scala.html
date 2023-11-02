@@ -2,25 +2,61 @@
 
 @main("Welcome to PokemonLite") {
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to PokemonLite!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/index.css")">
   </head>
-  <body> <!--background="@routes.Assets.versioned("images/backGroundMenu.png")" TO DO: find fiitng background-->
-    <div style="text-align: center">
-      <img src="@routes.Assets.versioned("images/Logo.png")" alt="" width="300" height="150">
-      <br>
-      <br>
-      <button>
-        <!-- TO DO: not sure yet if its prettier to open the rules in a new tab or if its prettier to open them in the same tab? -->
-        <a target ="_blank" href="/rules">Rules and History of PokemonLite</a>
-      </button>
-      <br>
-      <br>
-      <h3> To start the game press the PokeBall !</h3>
-      <a href="/playerNames">
-        <button style="border: none; background: none;">
-          <img src="@routes.Assets.versioned("images/pokeball.png")" alt="" width="80" height="80">
-        </button>
-      </a>
+  <body>
+    <!-- autoplay has to be enabled in chrome browser settings -->
+    <audio autoplay loop>
+      <source src="@routes.Assets.versioned("audios/TitleScreenMusic.mp3")" type="audio/mpeg">
+      Your browser doesn't support this audio.
+    </audio>
+    <audio id="buttonSound">
+      <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
+      Your browser doesn't support this audio.
+    </audio>
+    <div class="container">
+      <div class="topContainer">
+        <div class="title">
+          <img class="titleImage" src="@routes.Assets.versioned("images/Logo.png")" alt="">
+        </div>
+        <div class="rules">
+            <button id="rulesButton" class="bookButton">
+              <img class="bookImage" src="@routes.Assets.versioned("images/bookIcon.png")" alt="">
+            </button>
+        </div>
+      </div>
+      <div class="bottomContainer">
+        <div class="startContainer">
+            <button id="startButton" class="pokeballButton">
+              <img class="pokeballImage" src="@routes.Assets.versioned("images/pokeball.png")" alt="">
+            </button>
+            <div class="startText"> Start!</div>
+        </div>
+      </div>
     </div>
   </body>
+  <script>
+          const buttonSound = document.getElementById("buttonSound");
+          const rulesButton = document.getElementById("rulesButton");
+          const startButton = document.getElementById("startButton");
+
+          rulesButton.addEventListener("click", () => {
+            buttonSound.play();
+
+            setTimeout(() => {
+              window.location.href = "/rules";
+            }, 920);
+          });
+
+          startButton.addEventListener("click", () => {
+            buttonSound.play();
+
+            setTimeout(() => {
+              window.location.href = "/playerNames";
+            }, 920);
+          });
+  </script>
 }
