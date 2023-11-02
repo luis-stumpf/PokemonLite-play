@@ -1,48 +1,37 @@
-<!DOCTYPE html>
+@main("PokemonLite Rules"){
+    <div>
+        <img src="@routes.Assets.versioned("images/Logo.png")" alt="" width="300" height="150">
+    </div>
 
-<html lang="en">
-    <head>
-        <title>PokemonLite</title>
-        <!--<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/rules.css")"> -->
-    </head>
-    <body>
-        <div class="" style="text-align: center">
-            <div class="">
-                <img src="@routes.Assets.versioned("images/Logo.png")" alt="" width="300" height="150">
-            </div>
+    <p>Welcome to PokemonLite, a fun and interactive game that brings the world of Pokemon to your web browser</p>
 
-            <p>Welcome to PokemonLite, a fun and interactive game that brings the world of Pokemon to your web browser</p>
+    <h2>Here's how to play:</h2>
+    <ul>
+        <li>Choose your Pokemon Trainer name and click "Start."</li>
+        <li>Select three Pokemon to form your team. You can choose from a variety of Pokemon, each with its own unique abilities.</li>
+        <li>Battle other trainers, level up your Pokemon, and become the ultimate Pokemon Master!</li>
+    </ul>
 
-            <h2>Here's how to play:</h2>
-            <ul>
-                <li>Choose your Pokemon Trainer name and click "Start."</li>
-                <li>Select three Pokemon to form your team. You can choose from a variety of Pokemon, each with its own unique abilities.</li>
-                <li>Battle other trainers, level up your Pokemon, and become the ultimate Pokemon Master!</li>
-            </ul>
+    <h2>Game Rules:</h2>
+        <p>Before embarking on your Pokemon adventure, it's essential to understand the game's rules:</p>
+    <ul>
+        <li>At the start of each battle, you must choose between two actions: 'Fight' or 'Switch Pokemon.'</li>
+        <li>'Fight' allows your active Pokemon to use its special move against the opponent.</li>
+        <li>'Switch Pokemon' enables you to switch your current Pokemon with another from your team.</li>
+        <li>The battle continues until one trainer's team is defeated, or the player's last Pokemon faints.</li>
+    </ul>
 
-            <h2>Game Rules:</h2>
-            <p>Before embarking on your Pokemon adventure, it's essential to understand the game's rules:</p>
-            <ul>
-                <li>At the start of each battle, you must choose between two actions: 'Fight' or 'Switch Pokemon.'</li>
-                <li>'Fight' allows your active Pokemon to use its special move against the opponent.</li>
-                <li>'Switch Pokemon' enables you to switch your current Pokemon with another from your team.</li>
-                <li>The battle continues until one trainer's team is defeated, or the player's last Pokemon faints.</li>
-            </ul>
-
-            <h2>History of PokemonLite:</h2>
-            <p>PokemonLite is a project born out of a passion for both Pokemon and web development. Developed as an exercise for the Web-Application lecture at HTWG Konstanz, it has grown into a full-fledged Scala Play Project.</p>
-            <p>Originally created for the Software Engineering course, PokemonLite is now a dynamic online platform where players can engage in epic battles with their favorite Pokemon.</p>
-            <p>To interact with the code, you can:</p>
-            <ul>
-                <li>Compile the code with 'sbt compile.'</li>
-                <li>Run the game using 'sbt run.'</li>
-                <li>Access the Scala 3 REPL with 'sbt console' to experiment and extend the project.</li>
-            </ul>
-        </div>
-    </body>
-    <br>
+    <h2>History of PokemonLite:</h2>
+    <p>PokemonLite is a project born out of a passion for both Pokemon and web development. Developed as an exercise for the Web-Application lecture at HTWG Konstanz, it has grown into a full-fledged Scala Play Project.</p>
+    <p>Originally created for the Software Engineering course, PokemonLite is now a dynamic online platform where players can engage in epic battles with their favorite Pokemon.</p>
+    <p>To interact with the code, you can:</p>
+    <ul>
+        <li>Compile the code with 'sbt compile.'</li>
+        <li>Run the game using 'sbt run.'</li>
+        <li>Access the Scala 3 REPL with 'sbt console' to experiment and extend the project.</li>
+    </ul>
     <br>
     <div> <!-- prob unnecessary because the rules open in a new tab -->
         <a href="/">Return to Start</a>
     </div>
-</html>
+}

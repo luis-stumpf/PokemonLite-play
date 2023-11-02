@@ -1,26 +1,24 @@
-@()
-
 @main("Welcome to PokemonLite") {
-  <head>
-    <title>Welcome to PokemonLite!</title>
-  </head>
-  <body> <!--background="@routes.Assets.versioned("images/backGroundMenu.png")" TO DO: find fiitng background-->
-    <div style="text-align: center">
-      <img src="@routes.Assets.versioned("images/Logo.png")" alt="" width="300" height="150">
-      <br>
-      <br>
-      <button>
-        <!-- TO DO: not sure yet if its prettier to open the rules in a new tab or if its prettier to open them in the same tab? -->
-        <a target ="_blank" href="/rules">Rules and History of PokemonLite</a>
-      </button>
-      <br>
-      <br>
-      <h3> To start the game press the PokeBall !</h3>
-      <a href="/playerNames">
-        <button style="border: none; background: none;">
-          <img src="@routes.Assets.versioned("images/pokeball.png")" alt="" width="80" height="80">
-        </button>
-      </a>
-    </div>
-  </body>
+    <head>
+        <title>Welcome to PokemonLite!</title>
+    </head>
+    <body> <!--background="@routes.Assets.versioned("images/backGroundMenu.png")" TO DO: find fiitng background-->
+        <main>
+            <img src="@routes.Assets.versioned("images/Logo.png")" alt="" width="300" height="150">
+            <br>
+            <br>
+            <button>
+                    <!-- TO DO: not sure yet if its prettier to open the rules in a new tab or if its prettier to open them in the same tab? -->
+                <a target ="_blank" href="/rules">Rules and History of PokemonLite</a>
+            </button>
+            <br>
+            <br>
+            <h3> To start the game press the PokeBall !</h3>
+            <a href="/playerNames">
+                <button>
+                    <img src="@routes.Assets.versioned("images/pokeball.png")" alt="" width="80" height="80">
+                </button>
+            </a>
+        </main>
+    </body>
 }

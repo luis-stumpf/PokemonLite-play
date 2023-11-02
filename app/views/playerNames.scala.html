@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-
-<html lang="en">
-    <div style="text-align: center">
-        <h2>Choose your Names!</h2>
-        <form method="POST" action="/initPlayers">
-            <label for="player1Name">Player 1: </label>
-            <input type="text" id="player1Name" name="player1Name" required>
-            <br>
-            <br>
-            <label for="player2Name">Player 2: </label>
-            <input type="text" id="player2Name" name="player2Name" required>
-            <br>
-            <br>
-            <input type="submit" value="Start">
-        </form>
-    </div>
-</html>
+@main("Choose your names") {
+    <h2>Choose your Names!</h2>
+    <form method="POST" action="/initPlayers">
+        <label for="player1Name">Player 1: </label>
+        <input type="text" id="player1Name" name="player1Name" required>
+        <br>
+        <br>
+        <label for="player2Name">Player 2: </label>
+        <input type="text" id="player2Name" name="player2Name" required>
+        <br>
+        <br>
+        <input type="submit" value="Start">
+    </form>
+}
