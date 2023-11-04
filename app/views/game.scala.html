@@ -1,4 +1,6 @@
-@(tui: String, gameState: String, turn: Int)
+@import de.htwg.se.pokelite.model.Pokemon
+@import de.htwg.se.pokelite.model.PokePack
+@(tui: String, gameState: String, turn: Int, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
 
 @main("PokemonLite") {
     <h2>GameState: @gameState</h2>
@@ -7,17 +9,31 @@
 
     <div class="game-field">
         <div class="pokemon-status-wrapper-p2">
-            @playerStatus(pokemonName = "Glurak", pokemonHealth ="12")
+            @playerStatus(pokemon = pokemonPlayer2.toString)
         </div>
         <div class="pokemon-wrapper-p1">
-            @pokemonBack(pokemon = "Brutalanda")
+            @pokemonBack(pokemon = pokemonPlayer1.toString)
         </div>
         <div class="pokemon-wrapper-p2">
-            @pokemonFront(pokemon = "Glurak")
+            @pokemonFront(pokemon = pokemonPlayer2.toString)
         </div>
         <div class="pokemon-status-wrapper-p1">
-        @playerStatus(pokemonName = "shiggy", pokemonHealth ="12")
+            @playerStatus(pokemon = pokemonPlayer1.toString)
         </div>
+    </div>
+
+    <div class="menu-field">
+        @if(gameState == "DesicionState()") {
+            @desicionState()
+        } else if(gameState == "FightingState()" && turn == 1) {
+            @fightingState(pokemon = pokemonPlayer1)
+        } else if(gameState == "FightingState()" && turn == 2) {
+            @fightingState(pokemon = pokemonPlayer2)
+        } else if(gameState == "SwitchPokemonState()" && turn == 1) {
+            @switchPokemonState(pokePack = pokePackPlayer1)
+        } else if(gameState == "SwitchPokemonState()" && turn == 2) {
+            @switchPokemonState(pokePack = pokePackPlayer2)
+        }
     </div>
 
     <pre>@Html(tui)</pre>
