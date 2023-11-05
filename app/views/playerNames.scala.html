@@ -2,8 +2,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Player Names</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/playerNames.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/playerNames.less")">
     </head>
     <body>
         <!--<audio id="titleScreenMusic" autoplay loop >
@@ -14,23 +13,23 @@
             <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
             Your browser doesn't support this audio.
         </audio> -->
-        <div class="title">
+        <div class="playerNamesTitleContainer">
             <div class="playerNamesTitle">CHOOSE YOUR NAMES !</div>
         </div>
         <form method="POST" action="/initPlayers">
             <div class="playerNamesContainer">
                 <div class="playerName">
-                    <label class="playerName-label" for="player1Name">PLAYER 1 ?</label>
+                    <label class="playerName-label" for="player1Name">PLAYER 1  ?</label>
                     <input class="inputNames" type="text" id="player1Name" name="player1Name" required>
                     <span class="cursor" id="cursor1">_</span>
                 </div>
                 <div class="playerName">
-                    <label class="playerName-label" for="player2Name">PLAYER 2 ?</label>
+                    <label class="playerName-label" for="player2Name">PLAYER 2  ?</label>
                     <input class="inputNames" type="text" id="player2Name" name="player2Name" required>
                     <span class="cursor" id="cursor2">_</span>
                 </div>
             </div>
-            <div>
+            <div class="confirmButtonContainer">
                 <input class="confirmButton" type="submit" value="CONFIRM">
             </div>
         </form>

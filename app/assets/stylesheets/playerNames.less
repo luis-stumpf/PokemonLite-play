@@ -1,36 +1,33 @@
 @font-face {
     font-family: 'Pokemon Fire Red';
-    src: url('../images/pokemon_fire_red.woff2') format('woff2');
+    src: url('../fonts/pokemon_fire_red.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-}
-
-body {
-    background-image: url("../images/battlebackground.png");
-    background-size: cover;
-    font-family: 'Pokemon Fire Red', sans-serif;
-    color: #626262;
-    height: 97vh;
 }
 
 .confirmButton {
     padding-bottom: 2.5vh;
     font-size: 7vh;
     width: 27vh;
-    background-image: url(../images/confirmButton.png);
+    background-image: url("../images/confirmButton.png");
     background-size: cover;
     font-family: 'Pokemon Fire Red', sans-serif;
     color: white;
     border: none;
     background-color: transparent;
     height: 12vh;
-    margin-top: 10vh;
     transition: filter 0.3s;
     text-shadow:
             -1.5px -1.5px 0 #558c87,
             1.5px -1.5px 0 #558c87,
             -1.5px  1.5px 0 #558c87,
             1.5px  1.5px 0 #558c87;
+}
+
+.confirmButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20vh;
 }
 
 .confirmButton:hover {
@@ -40,12 +37,12 @@ body {
 .cursor {
     color: #626262;
     display: none;
-    font-size: 5.3vh;
+    font-size: 5.1vh;
     left: 0;
     margin-left: 19.4vh;
     position: absolute;
     text-shadow: 2px 2px rgba(210, 212, 202, 100);
-    top: 6.6vh;
+    top: 5.3vh;
 }
 
 @keyframes blink {
@@ -92,6 +89,17 @@ body {
     align-items: center;
 }
 
+.playerNamesTitleContainer {
+    color: #626262;
+    display: flex;
+    font-family: 'Pokemon Fire Red', sans-serif;
+    font-size: 7vh;
+    justify-content: center;
+    padding-top: 10vh;
+    padding-bottom: 13vh;
+    text-shadow: 2px 2px rgba(210, 212, 202, 100);
+}
+
 .playerName {
     background-image: url("../images/yourName.png");
     background-size: cover;
@@ -104,6 +112,8 @@ body {
 }
 
 .playerName-label {
+    font-family: 'Pokemon Fire Red', sans-serif;
+    color: #626262;
     padding-left: 19vh;
     padding-top: 1.679vh;
     font-size: 5.3vh;
@@ -111,11 +121,3 @@ body {
     text-shadow: 2px 2px rgba(210, 212, 202, 100);
 }
 
-.title {
-    display: flex;
-    font-size: 7vh;
-    justify-content: center;
-    padding-top: 10vh;
-    padding-bottom: 20vh;
-    text-shadow: 2px 2px rgba(210, 212, 202, 100);
-}

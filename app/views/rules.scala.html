@@ -4,7 +4,7 @@
         <title>Rules and History</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/rules.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/rules.less")">
     </head>
     <body>
        <!-- <audio id="coverTurnSound">
@@ -15,14 +15,14 @@
             <source src="@routes.Assets.versioned("audios/pageTurn.mp3")" type="audio/mpeg">
             Your browser doesn't support this audio.
         </audio> -->
-        <div class="title">
-            <img class="titleImage" src="@routes.Assets.versioned("images/Logo.png")" alt="">
+        <div class="titleRules">
+            <img class="titleImageRules" src="@routes.Assets.versioned("images/Logo.png")" alt="">
         </div>
         <div class="bookContainer">
-            <input type="checkbox" id="checkbox-cover">
-            <input type="checkbox" id="checkbox-page1">
-            <input type="checkbox" id="checkbox-page2">
-            <input type="checkbox" id="checkbox-page3">
+            <input class="checkboxPage" type="checkbox" id="checkbox-cover">
+            <input class="checkboxPage" type="checkbox" id="checkbox-page1">
+            <input class="checkboxPage" type="checkbox" id="checkbox-page2">
+            <input class="checkboxPage" type="checkbox" id="checkbox-page3">
             <div class="book">
                 <div class="cover">
                     <div class="front-cover">

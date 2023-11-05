@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title screen</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
-    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/index.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/index.less")">
   </head>
   <body>
     <!-- autoplay has to be enabled in chrome browser settings -->
@@ -21,22 +21,26 @@
           <img class="titleImage" src="@routes.Assets.versioned("images/Logo.png")" alt="">
         </div>
         <div class="rules">
+          <a target ="_blank" href="/rules">
             <button id="rulesButton" class="bookButton">
               <img class="bookImage" src="@routes.Assets.versioned("images/bookIcon.png")" alt="">
             </button>
+          </a>
         </div>
       </div>
       <div class="bottomContainer">
         <div class="startContainer">
+          <a href="/playerNames">
             <button id="startButton" class="pokeballButton">
               <img class="pokeballImage" src="@routes.Assets.versioned("images/pokeball.png")" alt="">
             </button>
+          </a>
             <div class="startText"> Start!</div>
         </div>
       </div>
     </div>
   </body>
-  <!--<script>
+  <!-- <script>
           const titleScreenMusic = document.getElementById("titleScreenMusic")
           const buttonSound = document.getElementById("buttonSound");
           const rulesButton = document.getElementById("rulesButton");
@@ -59,6 +63,5 @@
                   window.location.href = "/playerNames";
                   }, 900);
           });
-  </script>
-  -->
+  </script> -->
 }
