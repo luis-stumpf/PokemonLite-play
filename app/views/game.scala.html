@@ -3,13 +3,11 @@
 @(tui: String, gameState: String, turn: Int, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
 
 @main("PokemonLite") {
-    <h2>GameState: @gameState</h2>
-
     <h2>Turn: Player @turn</h2>
 
     <div class="game-field">
         <div class="pokemon-status-wrapper-p2">
-            @playerStatus(pokemon = pokemonPlayer2.toString)
+            @playerStatus(pokemon = pokemonPlayer2)
         </div>
         <div class="pokemon-wrapper-p1">
             @pokemonBack(pokemon = pokemonPlayer1.toString)
@@ -18,7 +16,7 @@
             @pokemonFront(pokemon = pokemonPlayer2.toString)
         </div>
         <div class="pokemon-status-wrapper-p1">
-            @playerStatus(pokemon = pokemonPlayer1.toString)
+            @playerStatus(pokemon = pokemonPlayer1)
         </div>
     </div>
 
@@ -35,12 +33,4 @@
             @switchPokemonState(pokePack = pokePackPlayer2)
         }
     </div>
-
-    <pre>@Html(tui)</pre>
-
-    <form method="GET">
-        <input type="text" name="command" />
-        <button type="submit">Submit</button>
-    </form>
-    <br>
 }

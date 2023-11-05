@@ -2,12 +2,19 @@
 @(player1Name: String, player2Name: String, allPokemons: Array[PokemonType])
 @main("Choose your Pokemons") {
     <h2>Choose your Pokemons!</h2>
+    <div class="showcase-box">
+        @for((pokemon, index) <- allPokemons.zipWithIndex) {
+            <div class="img-wrapper">
+                @pokemon.name
+                <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="200">
+            </div>
+        }
+    </div>
     <form method="POST" action="/initPokemons">
         <label for="player1Pokemon1">@player1Name's Pokemons: </label>
         <select id="player1Pokemon1" name="player1Pokemon1">
             @for((pokemon, index) <- allPokemons.zipWithIndex) {
                 <option value="@(index + 1)">
-                    <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="40">
                     @pokemon.name
                 </option>
             }
@@ -16,7 +23,6 @@
         <select id="player1Pokemon2" name="player1Pokemon2">
             @for((pokemon, index) <- allPokemons.zipWithIndex) {
                 <option value="@(index + 1)">
-                    <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="40">
                     @pokemon.name
                 </option>
             }
@@ -25,7 +31,6 @@
         <select id="player1Pokemon3" name="player1Pokemon3">
             @for((pokemon, index) <- allPokemons.zipWithIndex) {
                 <option value="@(index + 1)">
-                    <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="40">
                     @pokemon.name
                 </option>
             }
@@ -36,7 +41,6 @@
         <select id="player2Pokemon1" name="player2Pokemon1">
             @for((pokemon, index) <- allPokemons.zipWithIndex) {
                 <option value="@(index + 1)">
-                    <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="40">
                     @pokemon.name
                 </option>
             }
@@ -45,7 +49,6 @@
         <select id="player2Pokemon2" name="player2Pokemon2">
             @for((pokemon, index) <- allPokemons.zipWithIndex) {
                 <option value="@(index + 1)">
-                    <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="40">
                     @pokemon.name
                 </option>
             }
@@ -54,7 +57,6 @@
         <select id="player2Pokemon3" name="player2Pokemon3">
             @for((pokemon, index) <- allPokemons.zipWithIndex) {
                 <option value="@(index + 1)">
-                    <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="40">
                     @pokemon.name
                 </option>
             }
