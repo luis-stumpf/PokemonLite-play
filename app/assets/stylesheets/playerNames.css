@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'Pokemon Fire Red';
+    src: url('../images/pokemon_fire_red.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-image: url("../images/battlebackground.png");
+    background-size: cover;
+    font-family: 'Pokemon Fire Red', sans-serif;
+    color: #626262;
+    height: 97vh;
+}
+
+.confirmButton {
+    padding-bottom: 2.5vh;
+    font-size: 7vh;
+    width: 27vh;
+    background-image: url(../images/confirmButton.png);
+    background-size: cover;
+    font-family: 'Pokemon Fire Red', sans-serif;
+    color: white;
+    border: none;
+    background-color: transparent;
+    height: 12vh;
+    margin-top: 10vh;
+    transition: filter 0.3s;
+    text-shadow:
+            -1.5px -1.5px 0 #558c87,
+            1.5px -1.5px 0 #558c87,
+            -1.5px  1.5px 0 #558c87,
+            1.5px  1.5px 0 #558c87;
+}
+
+.confirmButton:hover {
+    filter: brightness(1.2);
+}
+
+.cursor {
+    color: #626262;
+    display: none;
+    font-size: 5.3vh;
+    left: 0;
+    margin-left: 19.4vh;
+    position: absolute;
+    text-shadow: 2px 2px rgba(210, 212, 202, 100);
+    top: 6.6vh;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.inputNames:focus + .cursor {
+    display: inline-block;
+    animation: blink 0.7s infinite;
+}
+
+.inputNames {
+    caret-color: transparent;
+    margin-left: 15vh;
+    height: 3vh;
+    width: 26vh;
+    margin-top: 0.5vh;
+    border: none;
+    outline: none;
+    font-family: 'Pokemon Fire Red', sans-serif;
+    color: #626262;
+    font-size: 5.3vh;
+    text-shadow: 2px 2px rgba(210, 212, 202, 100);
+    text-transform: uppercase;
+}
+
+.playerNamesContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.playerNamesTitle {
+    background-image: url("../images/PlayerNamesTitle.png");
+    background-size: cover;
+    width: 56vh;
+    height: 14.8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerName {
+    background-image: url("../images/yourName.png");
+    background-size: cover;
+    width: 51vh;
+    height: 13.4vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.playerName-label {
+    padding-left: 19vh;
+    padding-top: 1.679vh;
+    font-size: 5.3vh;
+    letter-spacing: -0.15vh;
+    text-shadow: 2px 2px rgba(210, 212, 202, 100);
+}
+
+.title {
+    display: flex;
+    font-size: 7vh;
+    justify-content: center;
+    padding-top: 10vh;
+    padding-bottom: 20vh;
+    text-shadow: 2px 2px rgba(210, 212, 202, 100);
+}
