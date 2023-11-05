@@ -1,6 +1,9 @@
 package controllers
 
 import de.htwg.se.pokelite.controller.impl.Controller
+import de.htwg.se.pokelite.model.impl.pokePlayer.PokePlayer
+import de.htwg.se.pokelite.model.{PokePack, Pokemon, PokemonType}
+import de.htwg.se.pokelite.model.PokemonType.{Glurak, Simsala}
 import de.htwg.se.pokelite.model.states.{DesicionState, FightingState, GameOverState, InitPlayerPokemonState, InitPlayerState, InitState, SwitchPokemonState}
 
 import javax.inject._
@@ -57,7 +60,21 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
                 }
 
         val gameString = controller.game.toString
-        val gameField = views.html.game(gameString, controller.game.state.toString, controller.game.turn)
+        val PokePlayer(namePlayer1, pokemonsPlayer1, currentPokePlayer1) = controller.game.player1.getOrElse( PokePlayer( "Luis", PokePack( List( Some( Pokemon.apply( Glurak ) ) ) ) ) )
+        val PokePlayer(namePlayer2, pokemonsPlayer2, currentPokePlayer2) = controller.game.player2.getOrElse( PokePlayer( "Timmy", PokePack( List( Some( Pokemon.apply( Simsala ) ) ) ) ) )
+
+        val currentPokemonPlayer1 = pokemonsPlayer1.contents.apply(currentPokePlayer1).get
+        val currentPokemonPlayer2 = pokemonsPlayer2.contents.apply(currentPokePlayer2).get
+
+        val gameField = views.html.game(
+            gameString,
+            controller.game.state.toString,
+            controller.game.turn,
+            currentPokemonPlayer1,
+            currentPokemonPlayer2,
+            pokemonsPlayer1,
+            pokemonsPlayer2
+        )
 
         Ok(gameField)
     }
@@ -69,12 +86,13 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     def initPlayers(): Action[AnyContent] = Action { implicit request =>
         val player1Name = request.body.asFormUrlEncoded.get("player1Name").mkString
         val player2Name = request.body.asFormUrlEncoded.get("player2Name").mkString
+        val allPokemons = PokemonType.values
 
         controller.initPlayers()
         controller.addPlayer(player1Name)
         controller.addPlayer(player2Name)
 
-        Ok(views.html.playerPokemons(player1Name, player2Name))
+        Ok(views.html.playerPokemons(player1Name, player2Name, allPokemons))
     }
 
     def initPokemons(): Action[AnyContent] = Action { implicit request =>

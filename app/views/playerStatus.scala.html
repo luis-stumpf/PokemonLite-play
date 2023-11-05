@@ -1,0 +1,10 @@
+@import de.htwg.se.pokelite.model.Pokemon
+@(pokemon: Pokemon)
+<div class="pokemon-status">
+    <div class="pokemon-name">
+        @pokemon.pType.name
+    </div>
+        <div>
+            HP: @pokemon.getHp / @pokemon.pType.hp
+        </div>
+</div>
