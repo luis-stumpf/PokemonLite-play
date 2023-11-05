@@ -1,20 +1,20 @@
 @main("Welcome to PokemonLite") {
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to PokemonLite!</title>
+    <title>Title screen</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/index.css")">
   </head>
   <body>
     <!-- autoplay has to be enabled in chrome browser settings -->
-    <audio autoplay loop>
+    <!--<audio id="titleScreenMusic" autoplay loop >
       <source src="@routes.Assets.versioned("audios/TitleScreenMusic.mp3")" type="audio/mpeg">
       Your browser doesn't support this audio.
     </audio>
     <audio id="buttonSound">
       <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
       Your browser doesn't support this audio.
-    </audio>
+    </audio> -->
     <div class="container">
       <div class="topContainer">
         <div class="title">
@@ -36,25 +36,29 @@
       </div>
     </div>
   </body>
-  <script>
+  <!--<script>
+          const titleScreenMusic = document.getElementById("titleScreenMusic")
           const buttonSound = document.getElementById("buttonSound");
           const rulesButton = document.getElementById("rulesButton");
           const startButton = document.getElementById("startButton");
 
-          rulesButton.addEventListener("click", () => {
-            buttonSound.play();
+          titleScreenMusic.volume = 0.2;
 
-            setTimeout(() => {
-              window.location.href = "/rules";
-            }, 920);
+          rulesButton.addEventListener("click", () => {
+              buttonSound.play();
+              setTimeout(() => {
+                  window.open("/rules", "_blank");
+
+                  }, 900);
           });
 
           startButton.addEventListener("click", () => {
-            buttonSound.play();
+              buttonSound.play();
 
-            setTimeout(() => {
-              window.location.href = "/playerNames";
-            }, 920);
+              setTimeout(() => {
+                  window.location.href = "/playerNames";
+                  }, 900);
           });
   </script>
+  -->
 }
