@@ -2,15 +2,15 @@
 @(pokemon: Pokemon)
 <div class="menu-wrapper">
     <a href="/game?command=1">
-        <button class="button-style fight-button">@pokemon.pType.attacks.head.toString</button>
+        <button class="button-style fight-button small">@pokemon.pType.attacks.head.toString</button>
     </a>
     <a href="/game?command=2">
-        <button class="button-style fight-button">@pokemon.pType.attacks.apply(1).toString</button>
+        <button class="button-style fight-button small">@pokemon.pType.attacks.apply(1).toString</button>
     </a>
     <a href="/game?command=3">
-        <button class="button-style fight-button">@pokemon.pType.attacks.apply(2).toString</button>
+        <button class="button-style fight-button small">@pokemon.pType.attacks.apply(2).toString</button>
     </a>
     <a href="/game?command=4">
-        <button class="button-style fight-button">@pokemon.pType.attacks.apply(3).toString</button>
+        <button class="button-style fight-button small">@pokemon.pType.attacks.apply(3).toString</button>
     </a>
 </div>

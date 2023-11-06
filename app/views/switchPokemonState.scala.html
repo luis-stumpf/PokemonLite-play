@@ -3,7 +3,7 @@
 <div class="menu-wrapper">
     @for((pokemon, index) <- pokePack.contents.zipWithIndex) {
         <a class="switch-link" href="/game?command=@(index + 1)">
-            <button class="pokemon-button">
+            <button class="pokemon-button small">
                 <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.get.pType.name +"Front.gif")" height="40">
                 @pokemon
             </button>
