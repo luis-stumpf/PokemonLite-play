@@ -1,9 +1,60 @@
+.choosePokemonsTitleContainer {
+  .chooseTitleContainer;
+  padding-bottom: 5vh;
+}
+
+option {
+  font-family: 'Pokemon Fire Red', sans-serif;
+  font-size: 2.3vh;
+  color: @fontColour;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.pokemonLabel {
+  margin-top: 2vh;
+  margin-bottom: 1vh;
+}
+
+.pokemonSelection {
+  background-image: @titleBackground;
+  background-size: cover;
+  height: 13.8vh;
+  width: 52.2vh;
+  font-family: 'Pokemon Fire Red', sans-serif;
+  font-size: 4vh;
+  color: @fontColour;
+  text-shadow: @textShadow;
+  text-transform: uppercase;
+}
+
+.pokemonSelectionContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+select {
+  appearance: none;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  width: 13.5vh;
+  height: 4vh;
+  color: @fontColour;
+  font-family: 'Pokemon Fire Red', sans-serif;
+  border-radius: 1vh;
+  font-size: 3vh;
+}
+
 .showcase-box {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.startButtonContainer {
+  .confirmButtonContainer;
+  margin-top: 3vh;
 }
 
 .img-wrapper {
@@ -13,6 +64,9 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  font-size: 3vh;
   justify-content: center;
   align-items: center;
+  font-family: 'Pokemon Fire Red', sans-serif;
+  color: @fontColour;
 }

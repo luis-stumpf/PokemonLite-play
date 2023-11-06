@@ -1,68 +1,84 @@
 @import de.htwg.se.pokelite.model.PokemonType
 @(player1Name: String, player2Name: String, allPokemons: Array[PokemonType])
 @main("Choose your Pokemons") {
-    <h2>Choose your Pokemons!</h2>
+    <div class="choosePokemonsTitleContainer">
+        <div class="chooseTitle">CHOOSE YOUR POKEMONS !</div>
+    </div>
     <div class="showcase-box">
         @for((pokemon, index) <- allPokemons.zipWithIndex) {
             <div class="img-wrapper">
                 @pokemon.name
-                <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="200">
+                <img src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="200" alt="">
             </div>
         }
     </div>
-    <form method="POST" action="/initPokemons">
-        <label for="player1Pokemon1">@player1Name's Pokemons: </label>
-        <select id="player1Pokemon1" name="player1Pokemon1">
-            @for((pokemon, index) <- allPokemons.zipWithIndex) {
-                <option value="@(index + 1)">
-                    @pokemon.name
-                </option>
-            }
-        </select>
-        <label for="player1Pokemon2"></label>
-        <select id="player1Pokemon2" name="player1Pokemon2">
-            @for((pokemon, index) <- allPokemons.zipWithIndex) {
-                <option value="@(index + 1)">
-                    @pokemon.name
-                </option>
-            }
-        </select>
-        <label for="player1Pokemon3"></label>
-        <select id="player1Pokemon3" name="player1Pokemon3">
-            @for((pokemon, index) <- allPokemons.zipWithIndex) {
-                <option value="@(index + 1)">
-                    @pokemon.name
-                </option>
-            }
-        </select>
-        <br>
-        <br>
-        <label for="player2Pokemon1">@player2Name's Pokemons: </label>
-        <select id="player2Pokemon1" name="player2Pokemon1">
-            @for((pokemon, index) <- allPokemons.zipWithIndex) {
-                <option value="@(index + 1)">
-                    @pokemon.name
-                </option>
-            }
-        </select>
-        <label for="player2Pokemon2"></label>
-        <select id="player2Pokemon2" name="player2Pokemon2">
-            @for((pokemon, index) <- allPokemons.zipWithIndex) {
-                <option value="@(index + 1)">
-                    @pokemon.name
-                </option>
-            }
-        </select>
-        <label for="player2Pokemon3"></label>
-        <select id="player2Pokemon3" name="player2Pokemon3">
-            @for((pokemon, index) <- allPokemons.zipWithIndex) {
-                <option value="@(index + 1)">
-                    @pokemon.name
-                </option>
-            }
-        </select>
-        <br>
-        <br>
-        <input type="submit" value="Start">
+    <form  method="POST" action="/initPokemons">
+        <div class="pokemonSelectionContainer">
+            <div class="pokemonSelection">
+                <div class="pokemonLabel">
+                    <label for="player1Pokemon1">@player1Name's Pokemons: </label>
+                </div>
+                <select id="player1Pokemon1" name="player1Pokemon1">
+                    <option value="" disabled selected style="display: none;"></option>
+                    @for((pokemon, index) <- allPokemons.zipWithIndex) {
+                        <option value="@(index + 1)">
+                        @pokemon.name
+                        </option>
+                    }
+                </select>
+                <label for="player1Pokemon2"></label>
+                <select id="player1Pokemon2" name="player1Pokemon2">
+                    <option value="" disabled selected style="display: none;"></option>
+                    @for((pokemon, index) <- allPokemons.zipWithIndex) {
+                        <option class="pokemonOptions" value="@(index + 1)">
+                        @pokemon.name
+                        </option>
+                    }
+                </select>
+                <label for="player1Pokemon3"></label>
+                <select id="player1Pokemon3" name="player1Pokemon3">
+                    <option value="" disabled selected style="display: none;"></option>
+                    @for((pokemon, index) <- allPokemons.zipWithIndex) {
+                        <option value="@(index + 1)">
+                        @pokemon.name
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="pokemonSelection">
+                <div class="pokemonLabel">
+                    <label for="player2Pokemon1">@player2Name's Pokemons: </label>
+                </div>
+                <select id="player2Pokemon1" name="player2Pokemon1">
+                    <option value="" disabled selected style="display: none;"></option>
+                    @for((pokemon, index) <- allPokemons.zipWithIndex) {
+                        <option value="@(index + 1)">
+                            @pokemon.name
+                        </option>
+                    }
+                </select>
+                <label for="player2Pokemon2"></label>
+                <select id="player2Pokemon2" name="player2Pokemon2">
+                    <option value="" disabled selected style="display: none;"></option>
+                    @for((pokemon, index) <- allPokemons.zipWithIndex) {
+                        <option value="@(index + 1)">
+                            @pokemon.name
+                        </option>
+                    }
+                </select>
+                <label for="player2Pokemon3"></label>
+                <select id="player2Pokemon3" name="player2Pokemon3">
+                    <option value="" disabled selected style="display: none;"></option>
+                    @for((pokemon, index) <- allPokemons.zipWithIndex) {
+                        <option value="@(index + 1)">
+                            @pokemon.name
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="startButtonContainer">
+            <input class="confirmButton" type="submit" value="CONFIRM">
+        </div>
     </form>
 }

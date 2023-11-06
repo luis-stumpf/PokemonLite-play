@@ -1,8 +1,22 @@
-@font-face {
-    font-family: 'Pokemon Fire Red';
-    src: url('../fonts/pokemon_fire_red.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+.chooseTitle {
+    background-image: @titleBackground;
+    background-size: cover;
+    width: 56vh;
+    height: 14.8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chooseTitleContainer {
+    color: @fontColour;
+    display: flex;
+    font-family: 'Pokemon Fire Red', sans-serif;
+    font-size: 7vh;
+    justify-content: center;
+    padding-top: 9vh;
+    padding-bottom: 13vh;
+    text-shadow: @textShadow;
 }
 
 .confirmButton {
@@ -35,13 +49,13 @@
 }
 
 .cursor {
-    color: #626262;
+    color: @fontColour;
     display: none;
     font-size: 5.1vh;
     left: 0;
     margin-left: 19.4vh;
     position: absolute;
-    text-shadow: 2px 2px rgba(210, 212, 202, 100);
+    text-shadow: @textShadow;
     top: 5.3vh;
 }
 
@@ -68,36 +82,15 @@
     border: none;
     outline: none;
     font-family: 'Pokemon Fire Red', sans-serif;
-    color: #626262;
+    color: @fontColour;
     font-size: 5.3vh;
-    text-shadow: 2px 2px rgba(210, 212, 202, 100);
+    text-shadow: @textShadow;
     text-transform: uppercase;
 }
 
 .playerNamesContainer {
     display: flex;
     justify-content: space-evenly;
-}
-
-.playerNamesTitle {
-    background-image: url("../images/PlayerNamesTitle.png");
-    background-size: cover;
-    width: 56vh;
-    height: 14.8vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.playerNamesTitleContainer {
-    color: #626262;
-    display: flex;
-    font-family: 'Pokemon Fire Red', sans-serif;
-    font-size: 7vh;
-    justify-content: center;
-    padding-top: 10vh;
-    padding-bottom: 13vh;
-    text-shadow: 2px 2px rgba(210, 212, 202, 100);
 }
 
 .playerName {
@@ -113,11 +106,11 @@
 
 .playerName-label {
     font-family: 'Pokemon Fire Red', sans-serif;
-    color: #626262;
+    color: @fontColour;
     padding-left: 19vh;
     padding-top: 1.679vh;
     font-size: 5.3vh;
     letter-spacing: -0.15vh;
-    text-shadow: 2px 2px rgba(210, 212, 202, 100);
+    text-shadow: @textShadow;
 }
 

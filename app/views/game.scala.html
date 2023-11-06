@@ -3,8 +3,9 @@
 @(tui: String, gameState: String, turn: Int, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
 
 @main("PokemonLite") {
-    <h2>Turn: Player @turn</h2>
-
+    <div class="turn">
+        Turn: Player @turn
+    </div>
     <div class="game-field">
         <div class="pokemon-status-wrapper-p2">
             @playerStatus(pokemon = pokemonPlayer2)
