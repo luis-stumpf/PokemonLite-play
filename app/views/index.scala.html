@@ -6,15 +6,6 @@
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/index.less")">
   </head>
   <body>
-    <!-- autoplay has to be enabled in chrome browser settings -->
-    <!--<audio id="titleScreenMusic" autoplay loop >
-      <source src="@routes.Assets.versioned("audios/TitleScreenMusic.mp3")" type="audio/mpeg">
-      Your browser doesn't support this audio.
-    </audio>
-    <audio id="buttonSound">
-      <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
-      Your browser doesn't support this audio.
-    </audio> -->
     <div class="container">
       <div class="topContainer">
         <div class="title">
@@ -40,28 +31,4 @@
       </div>
     </div>
   </body>
-  <!-- <script>
-          const titleScreenMusic = document.getElementById("titleScreenMusic")
-          const buttonSound = document.getElementById("buttonSound");
-          const rulesButton = document.getElementById("rulesButton");
-          const startButton = document.getElementById("startButton");
-
-          titleScreenMusic.volume = 0.2;
-
-          rulesButton.addEventListener("click", () => {
-              buttonSound.play();
-              setTimeout(() => {
-                  window.open("/rules", "_blank");
-
-                  }, 900);
-          });
-
-          startButton.addEventListener("click", () => {
-              buttonSound.play();
-
-              setTimeout(() => {
-                  window.location.href = "/playerNames";
-                  }, 900);
-          });
-  </script> -->
 }

@@ -7,14 +7,6 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/rules.less")">
     </head>
     <body>
-       <!-- <audio id="coverTurnSound">
-            <source src="@routes.Assets.versioned("audios/coverTurn.mp3")" type="audio/mpeg">
-            Your browser doesn't support this audio.
-        </audio>
-        <audio id="pageTurnSound">
-            <source src="@routes.Assets.versioned("audios/pageTurn.mp3")" type="audio/mpeg">
-            Your browser doesn't support this audio.
-        </audio> -->
         <div class="titleRules">
             <img class="titleImageRules" src="@routes.Assets.versioned("images/Logo.png")" alt="">
         </div>
@@ -97,20 +89,4 @@
             </div>
         </div>
     </body>
-    <!-- <script>
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            const pageTurnSound = document.getElementById("pageTurnSound");
-            const coverTurnSound = document.getElementById("coverTurnSound");
-
-            checkboxes.forEach((checkbox) => {
-                checkbox.addEventListener("click", () => {
-                    if (checkbox.id === "checkbox-cover") {
-                        coverTurnSound.play();
-                    } else {
-                        pageTurnSound.play();
-                    }
-                });
-            });
-    </script>
--->
 }

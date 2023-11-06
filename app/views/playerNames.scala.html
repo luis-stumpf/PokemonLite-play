@@ -5,14 +5,6 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/playerNames.less")">
     </head>
     <body>
-        <!--<audio id="titleScreenMusic" autoplay loop >
-            <source src="@routes.Assets.versioned("audios/TitleScreenMusic.mp3")" type="audio/mpeg">
-            Your browser doesn't support this audio.
-        </audio>
-        <audio id="buttonSound">
-            <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
-            Your browser doesn't support this audio.
-        </audio> -->
         <div class="chooseTitleContainer">
             <div class="chooseTitle">CHOOSE YOUR NAMES !</div>
         </div>
@@ -21,12 +13,10 @@
                 <div class="playerName">
                     <label class="playerName-label" for="player1Name">PLAYER 1  ?</label>
                     <input class="inputNames" type="text" id="player1Name" name="player1Name" required>
-                    <span class="cursor" id="cursor1">_</span>
                 </div>
                 <div class="playerName">
                     <label class="playerName-label" for="player2Name">PLAYER 2  ?</label>
                     <input class="inputNames" type="text" id="player2Name" name="player2Name" required>
-                    <span class="cursor" id="cursor2">_</span>
                 </div>
             </div>
             <div class="confirmButtonContainer">
@@ -34,37 +24,4 @@
             </div>
         </form>
     </body>
-    <script>
-            const input1 = document.getElementById('player1Name');
-            const input2 = document.getElementById('player2Name');
-            const cursor1 = document.getElementById('cursor1');
-            const cursor2 = document.getElementById('cursor2');
-
-
-            const characterWidth1 = parseFloat(getComputedStyle(cursor1).width);
-            const characterWidth2 = parseFloat(getComputedStyle(cursor2).width);
-
-
-            input1.addEventListener('input', () => {
-                const inputText = input1.value;
-                const inputLength = inputText.length;
-
-                if (inputLength === 0) {
-                    cursor1.style.left = '0px';
-                } else {
-                    cursor1.style.left = `${inputLength}ch`;
-                }
-            });
-
-            input2.addEventListener('input', () => {
-                const inputText = input2.value;
-                const inputLength = inputText.length;
-
-                if (inputLength === 0) {
-                    cursor2.style.left = '0px';
-                } else {
-                    cursor2.style.left = `${inputLength}ch`;
-                }
-            });
-    </script>
 }
