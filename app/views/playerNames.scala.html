@@ -1,132 +1,64 @@
 @main("Choose your names") {
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Player Names</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/playerNames.less")">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@@1.3.0/font/bootstrap-icons.css">
-        <script>
-                function validateForm() {
-                    let player1Name = document.getElementById("player1Name").value;
-                    let player2Name = document.getElementById("player2Name").value;
-
-                    if (player1Name.trim() === "" && player2Name.trim() === "") {
-                        displayValidationAlert("Please enter a name for player 1.", "player1Name");
-                        displayValidationAlert("Please enter a name for player 2", "player2Name");
-                    } else if(player1Name.trim() === "") {
-                        displayValidationAlert("Please enter a name for player 1.", "player1Name");
-                    } else if(player2Name.trim() === "") {
-                        displayValidationAlert("Please enter a name for player 2.", "player2Name");
-                    } else {
-                        document.getElementById("playerForm").submit();
-                    }
-                }
-
-                function displayValidationAlert(message, inputId) {
-                    let inputField = document.getElementById(inputId);
-                    let alertDiv = document.createElement("div");
-                    alertDiv.className = "alert alert-warning alert-dismissible fade show mt-2";
-                    alertDiv.role = "alert";
-                    alertDiv.innerHTML = message;
-                    let closeButton = document.createElement("button");
-                    closeButton.type = "button";
-                    closeButton.className = "btn-close";
-                    closeButton.setAttribute("data-bs-dismiss", "alert");
-                    alertDiv.appendChild(closeButton);
-                    inputField.parentNode.appendChild(alertDiv);
-
-                    setTimeout(function () {
-                        alertDiv.remove("fade-out");
-                    }, 2500);
-                }
-        </script>
-    </head>
-    <body>
-        <nav class="custom-navbar navbar navbar-expand navbar-dark">
-            <div class="container-fluid">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-gear"></i>
-                            <span class="navBarFont">Settings</span>
-                        </a>
-                            <!-- TO DO: save, reload, undo, redo, etc -->
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item disabled" href="#">
-                                    <i class="navBarIcon bi bi-download"></i>
-                                    <span class="navBarFont">Save</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="navBarIcon bi bi-upload"></i>
-                                    <span class="navBarFont">Load</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="navBarIcon bi bi-arrow-counterclockwise"></i>
-                                    <span class="navBarFont">Undo</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="navBarIcon bi bi-arrow-clockwise"></i>
-                                    <span class="navBarFont">Redo</span>
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="navBarIcon bi bi-box-arrow-left"></i>
-                                    <span class="navBarFont">Exit Game</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">
-                            <i class="bi bi-house"></i>
-                            <span class="navBarFont">Home</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/rules">
-                            <i class="bi bi-book"> </i>
-                            <span class="navBarFont">Rules & History</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="chooseTitleContainer">
-                    <div class="chooseTitle">CHOOSE YOUR NAMES !</div>
-                </div>
-            </div>
-            <div class="row">
-                <form method="POST" action="/initPlayers" id="playerForm">
-                    <div class="playerNamesContainer">
-                        <div class="playerName">
-                            <label class="playerName-label" for="player1Name">PLAYER 1  ?</label>
-                            <input class="inputNames" type="text" id="player1Name" name="player1Name" required oninvalid="this.setCustomValidity('Enter User Name Here'); this.style.borderColor = 'red';"
-                            oninput="this.setCustomValidity('')">
-                        </div>
-                        <div class="playerName">
-                            <label class="playerName-label" for="player2Name">PLAYER 2  ?</label>
-                            <input class="inputNames" type="text" id="player2Name" name="player2Name" required>
-                        </div>
-                    </div>
-                    <div class="confirmButtonContainer">
-                        <input class="confirmButton" type="button" value="CONFIRM" onclick="validateForm()">
-                    </div>
-                </form>
+    @navbar()
+    <div class="container-fluid">
+        <div class="row">
+            <div class="chooseTitleContainer">
+                <div class="chooseTitle">CHOOSE YOUR NAMES !</div>
             </div>
         </div>
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <div class="row">
+            <form method="POST" action="/initPlayers" id="playerForm">
+                <div class="playerNamesContainer">
+                    <div class="playerName">
+                        <label class="playerName-label" for="player1Name">PLAYER 1  ?</label>
+                        <input class="inputNames" type="text" id="player1Name" name="player1Name" required oninvalid="this.setCustomValidity('Enter User Name Here'); this.style.borderColor = 'red';"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                    <br>
+                    <div class="playerName">
+                        <label class="playerName-label" for="player2Name">PLAYER 2  ?</label>
+                        <input class="inputNames" type="text" id="player2Name" name="player2Name" required>
+                    </div>
+                </div>
+                <div class="confirmButtonContainer">
+                    <input class="confirmButton" type="button" value="CONFIRM" onclick="validateForm()">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            let player1Name = document.getElementById("player1Name").value;
+            let player2Name = document.getElementById("player2Name").value;
+
+            if (player1Name.trim() === "" && player2Name.trim() === "") {
+                displayValidationAlert("Please enter a name for player 1.", "player1Name");
+                displayValidationAlert("Please enter a name for player 2", "player2Name");
+            } else if(player1Name.trim() === "") {
+                displayValidationAlert("Please enter a name for player 1.", "player1Name");
+            } else if(player2Name.trim() === "") {
+                displayValidationAlert("Please enter a name for player 2.", "player2Name");
+            } else {
+                document.getElementById("playerForm").submit();
+            }
+        }
+
+        function displayValidationAlert(message, inputId) {
+            let inputField = document.getElementById(inputId);
+            let alertDiv = document.createElement("div");
+            alertDiv.className = "alert alert-warning alert-dismissible fade show mt-2";
+            alertDiv.role = "alert";
+            alertDiv.innerHTML = message;
+            let closeButton = document.createElement("button");
+            closeButton.type = "button";
+            closeButton.className = "btn-close";
+            closeButton.setAttribute("data-bs-dismiss", "alert");
+            alertDiv.appendChild(closeButton);
+            inputField.parentNode.appendChild(alertDiv);
+
+            setTimeout(function () {
+                alertDiv.remove("fade-out");
+            }, 2500);
+        }
+    </script>
 }

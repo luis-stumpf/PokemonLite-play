@@ -9,16 +9,14 @@
   gap: 1vh;
   grid-template-columns: repeat(2, 50%);
   grid-template-rows: repeat(2, 50%);
-  height: 60vh;
   margin-top: 4vh !important;
-  width: 120vh !important;
+  max-width: 75% !important;
 }
 
 .turn {
   color: @fontColour;
   font-family: 'Pokemon Fire Red', sans-serif;
   font-size: 4vh;
-  //margin-bottom: 2vh;
   text-align: center;
   text-transform: uppercase;
   text-shadow: @textShadow;
@@ -26,50 +24,34 @@
 
 .pokemon-status {
   background-color: antiquewhite;
-  border-radius: 1.5vh;
+  border-radius: 15px;
   color: @fontColour;
   font-family: 'Pokemon Fire Red', sans-serif;
-  font-size: 7vh;
+  font-size: 3rem;
   text-align: center;
   text-shadow: @textShadow;
-  width: 25vh;
+  width: 18rem;
 }
-
-/*.health-bar {
-  width: 200px;
-  height: 20px;
-  background-color: #ddd;
-  border: 1px solid #000;
-  border-radius: 1vh;
-  overflow: hidden;
-}
-
-.health-fill {
-  height: 100%;
-  background-color: #4caf50;
-  border-radius: 1vh;
-}*/
 
 .pokemon-name {
-  font-size: 4vh;
-  margin: 0;
+  font-size: 2rem;
 }
 
 .pokemon-health {
-  font-size: 4vh;
-  margin: 0;
+  font-size: 2rem;
 }
 
 .pokemon-status-wrapper-p1 {
   grid-row: 2;
   grid-column: 2;
-  margin-top: 12vh;
+  margin-top: 15%;
+  display: flex;
+  align-items: center;
 }
 
 .pokemon-status-wrapper-p2 {
   grid-row: 1;
   grid-column: 1;
-  margin-top: -8vh;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -78,7 +60,7 @@
 .pokemon-wrapper-p1 {
   grid-row: 2;
   grid-column: 1;
-  margin-left: 18vh;
+  margin-left: 5%;
 }
 
 .pokemon-wrapper-p2 {
@@ -90,14 +72,14 @@
 
 .menu-field {
   background-color: beige;
-  border: 1vh solid darkslategrey;
-  border-radius: 2vh;
+  border: 10px solid darkslategrey;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  height: 24vh;
+  max-width: 75% !important;
   justify-content: space-evenly;
-  margin-top: 3vh !important;
-  width: 80vh !important;
+  margin-top: 3% !important;
+  padding: 5%;
 }
 
 .menu-wrapper {
@@ -109,12 +91,12 @@
 .button-style {
   //min-width: 90px;
   display: inline-block;
-  padding: 1vh;
-  font-size: 5vh;
+  padding: 8px;
+  font-size: 2rem;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
-  border-radius: 1.5vh;
+  border-radius: 20px;
   cursor: pointer;
   color: #FFFFFF;
   font-family: 'Pokemon Fire Red', sans-serif;
@@ -122,7 +104,7 @@
 
 .fight-button {
   background-color: #FF6347;
-  border: 0.5vh solid #FF4500;
+  border: 10px solid #FF4500;
 }
 
 .fight-button:hover {
@@ -131,7 +113,7 @@
 
 .switch-button {
   background-color: #4CAF50;
-  border: 0.5vh solid #4CAF50;
+  border: 10px solid #4CAF50;
 }
 
 .switch-button:hover {
@@ -141,13 +123,12 @@
 .pokemon-button {
   align-items: center;
   background-color: #F6F6F6;
-  border: 0.3vh solid #7b7b7b;
-  border-radius: 1.5vh;
+  border: 10px solid #7b7b7b;
+  border-radius: 15px;
   color: @fontColour;
   cursor: pointer;
   display: flex;
   font-family: 'Pokemon Fire Red', sans-serif;
-  height: 12vh;
   justify-content: center;
   padding: 10px 20px;
   text-shadow: @textShadow;
@@ -160,7 +141,7 @@
 }
 
 .small {
-  font-size: 4vh !important;
+  font-size: 2rem !important;
 }
 
 .switch-link {
