@@ -14,7 +14,7 @@
     font-family: 'Pokemon Fire Red', sans-serif;
     font-size: 7vh;
     justify-content: center;
-    padding-top: 9vh;
+    padding-top: 5vh;
     padding-bottom: 13vh;
     text-shadow: @textShadow;
 }
@@ -68,6 +68,23 @@
     }
 }
 
+.inputNames:invalid {
+    border-color: red;
+}
+
+.inputNames:invalid + .validation-message {
+    display: block;
+    color: red;
+    margin-top: 5px;
+}
+
+.validation-message {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
 .inputNames:focus + .cursor {
     display: inline-block;
     animation: blink 0.7s infinite;
@@ -77,13 +94,13 @@
     caret-color: transparent;
     margin-left: 15vh;
     height: 3vh;
-    width: 26vh;
-    margin-top: 0.5vh;
-    border: none;
+    width: 26vh !important;
+    margin-top: -0.8vh;
+    border: none !important;
     outline: none;
     font-family: 'Pokemon Fire Red', sans-serif;
-    color: @fontColour;
-    font-size: 5.0vh;
+    color: @fontColour !important;
+    font-size: 4vh;
     text-shadow: @textShadow;
     text-transform: uppercase;
 }
@@ -108,7 +125,7 @@
     font-family: 'Pokemon Fire Red', sans-serif;
     color: @fontColour;
     padding-left: 19vh;
-    padding-top: 1.679vh;
+    padding-top: 0.3vh;
     font-size: 5.3vh;
     letter-spacing: -0.15vh;
     text-shadow: @textShadow;

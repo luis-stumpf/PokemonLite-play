@@ -1,8 +1,9 @@
 @(pokemon: String)
-<div class="pokemon-container">
+<div>
     <img
+        class="img-fluid"
         src="@routes.Assets.versioned("images/pokemons/" + pokemon.split("\\s+").headOption.getOrElse("") +"Front.gif")"
-        alt="pokemon back"
-        width="250"
+        alt="pokemon front"
+        style="width: 25vh"
     >
 </div>

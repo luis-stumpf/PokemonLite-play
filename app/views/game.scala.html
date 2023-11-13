@@ -3,35 +3,108 @@
 @(tui: String, gameState: String, turn: Int, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
 
 @main("PokemonLite") {
-    <div class="turn">
-        Turn: Player @turn
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/playerNames.less")">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@@1.3.0/font/bootstrap-icons.css">
+    </head>
+    <nav class="custom-navbar navbar navbar-expand navbar-dark" >
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-gear"></i>
+                        <span class="navBarFont">Settings</span>
+                    </a>
+                        <!-- TO DO: save, reload, undo, redo, etc -->
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="navBarIcon bi bi-download"></i>
+                                <span class="navBarFont">Save</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="navBarIcon bi bi-upload"></i>
+                                <span class="navBarFont">Load</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="navBarIcon bi bi-arrow-counterclockwise"></i>
+                                <span class="navBarFont">Undo</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="navBarIcon bi bi-arrow-clockwise"></i>
+                                <span class="navBarFont">Redo</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="navBarIcon bi bi-box-arrow-left"></i>
+                                <span class="navBarFont">Exit Game</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="bi bi-house"></i>
+                        <span class="navBarFont">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/rules">
+                        <i class="bi bi-book"> </i>
+                        <span class="navBarFont">Rules & History</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="mx-auto game-field">
+                <div class="pokemon-status-wrapper-p2">
+                    @playerStatus(pokemon = pokemonPlayer2)
+                </div>
+                <div class="pokemon-wrapper-p1">
+                    @pokemonBack(pokemon = pokemonPlayer1.toString)
+                </div>
+                <div class="pokemon-wrapper-p2">
+                    @pokemonFront(pokemon = pokemonPlayer2.toString)
+                </div>
+                <div class="pokemon-status-wrapper-p1">
+                    @playerStatus(pokemon = pokemonPlayer1)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mx-auto menu-field">
+                <div class="turn">
+                    Turn: Player @turn
+                </div>
+                @if(gameState == "DesicionState()") {
+                    @desicionState()
+                } else if(gameState == "FightingState()" && turn == 1) {
+                    @fightingState(pokemon = pokemonPlayer1)
+                } else if(gameState == "FightingState()" && turn == 2) {
+                    @fightingState(pokemon = pokemonPlayer2)
+                } else if(gameState == "SwitchPokemonState()" && turn == 1) {
+                    @switchPokemonState(pokePack = pokePackPlayer1)
+                } else if(gameState == "SwitchPokemonState()" && turn == 2) {
+                    @switchPokemonState(pokePack = pokePackPlayer2)
+                }
+            </div>
+        </div>
     </div>
-    <div class="game-field">
-        <div class="pokemon-status-wrapper-p2">
-            @playerStatus(pokemon = pokemonPlayer2)
-        </div>
-        <div class="pokemon-wrapper-p1">
-            @pokemonBack(pokemon = pokemonPlayer1.toString)
-        </div>
-        <div class="pokemon-wrapper-p2">
-            @pokemonFront(pokemon = pokemonPlayer2.toString)
-        </div>
-        <div class="pokemon-status-wrapper-p1">
-            @playerStatus(pokemon = pokemonPlayer1)
-        </div>
-    </div>
-
-    <div class="menu-field">
-        @if(gameState == "DesicionState()") {
-            @desicionState()
-        } else if(gameState == "FightingState()" && turn == 1) {
-            @fightingState(pokemon = pokemonPlayer1)
-        } else if(gameState == "FightingState()" && turn == 2) {
-            @fightingState(pokemon = pokemonPlayer2)
-        } else if(gameState == "SwitchPokemonState()" && turn == 1) {
-            @switchPokemonState(pokePack = pokePackPlayer1)
-        } else if(gameState == "SwitchPokemonState()" && turn == 2) {
-            @switchPokemonState(pokePack = pokePackPlayer2)
-        }
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 }

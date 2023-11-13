@@ -5,88 +5,162 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/rules.less")">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@@1.3.0/font/bootstrap-icons.css">
     </head>
     <body>
-        <div class="titleRules">
-            <img class="titleImageRules" src="@routes.Assets.versioned("images/Logo.png")" alt="">
-        </div>
-        <div class="bookContainer">
-            <input class="checkboxPage" type="checkbox" id="checkbox-cover">
-            <input class="checkboxPage" type="checkbox" id="checkbox-page1">
-            <input class="checkboxPage" type="checkbox" id="checkbox-page2">
-            <input class="checkboxPage" type="checkbox" id="checkbox-page3">
-            <div class="book">
-                <div class="cover">
-                    <div class="front-cover">
-                        <label class="next" for="checkbox-cover"></label>
-                    </div>
-                    <div class="front-cover-backside">
-                        <label class="prev" for="checkbox-cover"></label>
-                    </div>
-                </div>
-                <div class="page" id="page1">
-                    <div class="front-page">
-                        <h2>Welcome to PokemonLite!</h2>
-                        <p>A fun and interactive game that brings the world of Pokemon to your web browser</p>
-                        <label class="next" for="checkbox-page1"><i class="fas fa-chevron-right"></i></label>
-                    </div>
-                    <div class="back-page">
-                        <h2>How to play:</h2>
-                        <ul>
-                            <li>Choose your names first.</li>
-                            <br>
-                            <li>Select three Pokemon to form your team. Each Pokemon has its own unique abilities.</li>
-                            <br>
-                            <li>Battle other trainers and become the ultimate Pokemon Master!</li>
+        <nav class="navbar navbar-expand navbar-dark" style="background-color: #c1e5fced; height: 6%;">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-gear"></i>
+                            <span class="navBarFont">Settings</span>
+                        </a>
+                            <!-- TO DO: save, reload, undo, redo, etc -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item disabled" href="#">
+                                    <i class="navBarIcon bi bi-download"></i>
+                                    <span class="navBarFont">Save</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="navBarIcon bi bi-upload"></i>
+                                    <span class="navBarFont">Load</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item disabled" href="#">
+                                    <i class="navBarIcon bi bi-arrow-counterclockwise"></i>
+                                    <span class="navBarFont">Undo</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item disabled" href="#">
+                                    <i class="navBarIcon bi bi-arrow-clockwise"></i>
+                                    <span class="navBarFont">Redo</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="navBarIcon bi bi-box-arrow-left"></i>
+                                    <span class="navBarFont">Exit Game</span>
+                                </a>
+                            </li>
                         </ul>
-                        <label class="prev" for="checkbox-page1"><i class="fas fa-chevron-left"></i></label>
-                    </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="bi bi-house"></i>
+                            <span class="navBarFont">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/rules">
+                <i class="bi bi-book"> </i>
+                <span class="navBarFont">Rules & History</span>
+              </a>
+            </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="text-center position-absolute">
+                    <img class="titleImage" src="@routes.Assets.versioned("images/Logo.png")" alt="">
                 </div>
-                <div class="page" id="page2">
-                    <div class="front-page">
-                        <h2>Game Rules:</h2>
-                        <ul>
-                            <li>At the start of each battle, you must choose between two actions: 'Fight' or 'Switch Pokemon.'</li>
-                            <br>
-                            <li>'Fight' allows your active Pokemon to use its special move against the opponent.</li>
-                        </ul>
-                        <label class="next" for="checkbox-page2"><i class="fas fa-chevron-right"></i></label>
+            </div>
+            <div class="row">
+                <div class="bookContainer">
+                    <input class="checkboxPage" type="checkbox" id="checkbox-cover">
+                    <input class="checkboxPage" type="checkbox" id="checkbox-page1">
+                    <input class="checkboxPage" type="checkbox" id="checkbox-page2">
+                    <input class="checkboxPage" type="checkbox" id="checkbox-page3">
+                    <div class="book">
+                        <div class="cover">
+                            <div class="front-cover">
+                                <label class="next" for="checkbox-cover"></label>
+                            </div>
+                            <div class="front-cover-backside">
+                                <label class="prev" for="checkbox-cover"></label>
+                            </div>
+                        </div>
+                        <div class="page" id="page1">
+                            <div class="front-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">Welcome to PokemonLite!</span>
+                                <br>
+                                <p>A fun and interactive game that brings the world of Pokemon to your web browser</p>
+                                <label class="next" for="checkbox-page1"><i class="fas fa-chevron-right"></i></label>
+                            </div>
+                            <div class="back-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">How to play:</span>>
+                                <br>
+                                <ul>
+                                    <li>Choose your names first.</li>
+                                    <br>
+                                    <li>Select three Pokemon to form your team. Each Pokemon has its own unique abilities.</li>
+                                    <br>
+                                    <li>Battle other trainers and become the ultimate Pokemon Master!</li>
+                                </ul>
+                                <label class="prev" for="checkbox-page1"><i class="fas fa-chevron-left"></i></label>
+                            </div>
+                        </div>
+                        <div class="page" id="page2">
+                            <div class="front-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">Game Rules:</span>
+                                <br>
+                                <ul>
+                                    <li>At the start of each battle, you must choose between two actions: 'Fight' or 'Switch Pokemon.'</li>
+                                    <br>
+                                    <li>'Fight' allows your active Pokemon to use its special move against the opponent.</li>
+                                </ul>
+                                <label class="next" for="checkbox-page2"><i class="fas fa-chevron-right"></i></label>
+                            </div>
+                            <div class="back-page">
+                                <ul>
+                                    <li>'Switch Pokemon' enables you to switch your current Pokemon with another from your team.</li>
+                                    <br>
+                                    <li>The battle continues until one trainer's team is defeated, or the player's last Pokemon faints.</li>
+                                </ul>
+                                <label class="prev" for="checkbox-page2"><i class="fas fa-chevron-left"></i></label>
+                            </div>
+                        </div>
+                        <div class="page" id="page3">
+                            <div class="front-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">History of PokemonLite:</span>
+                                <br>
+                                <p>PokemonLite is a project born out of a passion for both Pokemon and web development. Developed as an exercise for the Web-Application lecture at HTWG Konstanz, it has grown into a full-fledged Scala Play Project.</p>
+                                <label class="next" for="checkbox-page3"><i class="fas fa-chevron-right"></i></label>
+                            </div>
+                            <div class="back-page">
+                                <p>Originally created for the Software Engineering course, PokemonLite is now a dynamic online platform where players can engage in epic battles with their favorite Pokemon.</p>
+                                <label class="prev" for="checkbox-page3"><i class="fas fa-chevron-left"></i></label>
+                            </div>
+                        </div>
+                        <div class="page" id="page4">
+                            <div class="front-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">How to interact with the code:</span>
+                                <br>
+                                <ul>
+                                    <li>Compile the code with 'sbt compile.'</li>
+                                    <br>
+                                    <li>Run the game using 'sbt run.'</li>
+                                    <br>
+                                    <li>Open 'localhost:9000' on your browser and experiment with the game</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="back-cover">
+                        </div>
                     </div>
-                    <div class="back-page">
-                        <ul>
-                            <li>'Switch Pokemon' enables you to switch your current Pokemon with another from your team.</li>
-                            <br>
-                            <li>The battle continues until one trainer's team is defeated, or the player's last Pokemon faints.</li>
-                        </ul>
-                        <label class="prev" for="checkbox-page2"><i class="fas fa-chevron-left"></i></label>
-                    </div>
-                </div>
-                <div class="page" id="page3">
-                    <div class="front-page">
-                        <h2>History of PokemonLite:</h2>
-                        <p>PokemonLite is a project born out of a passion for both Pokemon and web development. Developed as an exercise for the Web-Application lecture at HTWG Konstanz, it has grown into a full-fledged Scala Play Project.</p>
-                        <label class="next" for="checkbox-page3"><i class="fas fa-chevron-right"></i></label>
-                    </div>
-                    <div class="back-page">
-                        <p>Originally created for the Software Engineering course, PokemonLite is now a dynamic online platform where players can engage in epic battles with their favorite Pokemon.</p>
-                        <label class="prev" for="checkbox-page3"><i class="fas fa-chevron-left"></i></label>
-                    </div>
-                </div>
-                <div class="page" id="page4">
-                    <div class="front-page">
-                        <h2>How to interact with the code:</h2>
-                        <ul>
-                            <li>Compile the code with 'sbt compile.'</li>
-                            <br>
-                            <li>Run the game using 'sbt run.'</li>
-                            <br>
-                            <li>Open 'localhost:9000' on your browser and experiment with the game</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="back-cover">
                 </div>
             </div>
         </div>
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 }
