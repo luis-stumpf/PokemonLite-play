@@ -9,6 +9,12 @@ option {
   color: @fontColour;
   text-transform: uppercase;
   text-align: center;
+  text-shadow: @textShadow;
+}
+
+option:hover {
+  background-color: @navBarColour;
+  color: white;
 }
 
 .pokemon-image {
@@ -66,15 +72,18 @@ select {
 }
 
 .img-wrapper {
+  align-items: center;
   border: 0.5vh solid dimgray;
   background-color: #dddddd;
   border-radius: 2vh;
-  text-align: center;
+  color: @fontColour;
   display: flex;
   flex-direction: column;
-  font-size: 3vh;
-  justify-content: center;
-  align-items: center;
   font-family: 'Pokemon Fire Red', sans-serif;
-  color: @fontColour;
+  font-size: 3vh;
+  justify-content: space-around;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  text-align: center;
+  text-transform: uppercase;
 }

@@ -1,5 +1,13 @@
 @main("PokemonLite Rules"){
-    @navbar()
+    @navbar("rules")
+    <audio id="coverTurnSound">
+        <source src="@routes.Assets.versioned("audios/coverTurn.mp3")" type="audio/mpeg">
+        Your browser doesn't support this audio.
+    </audio>
+    <audio id="pageTurnSound">
+        <source src="@routes.Assets.versioned("audios/pageTurn.mp3")" type="audio/mpeg">
+        Your browser doesn't support this audio.
+    </audio>
     <div class="container-fluid">
         <div class="row">
             <div class="text-center position-absolute">
@@ -92,4 +100,19 @@
             </div>
         </div>
     </div>
+    <script>
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const pageTurnSound = document.getElementById("pageTurnSound");
+        const coverTurnSound = document.getElementById("coverTurnSound");
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener("click", () => {
+                if (checkbox.id === "checkbox-cover") {
+                    coverTurnSound.play();
+                } else {
+                    pageTurnSound.play();
+                }
+            });
+        });
+    </script>
 }

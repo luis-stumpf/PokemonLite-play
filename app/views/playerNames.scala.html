@@ -1,5 +1,18 @@
 @main("Choose your names") {
-    @navbar()
+    <!--<div id="loading-screen">
+        <div class="tenor-gif-embed" data-postid="13709403" data-share-method="host" data-aspect-ratio="1.3676" data-width="100%"><a href="https://tenor.com/view/pikachu-running-run-run-away-gif-13709403">Pikachu Running Sticker</a>from <a href="https://tenor.com/search/pikachu-stickers">Pikachu Stickers</a></div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        Loading...
+    </div>-->
+    @navbar("playerNames")
+    <audio id="titleScreenMusic" autoplay loop >
+        <source src="@routes.Assets.versioned("audios/TitleScreenMusic.mp3")" type="audio/mpeg">
+        Your browser doesn't support this audio.
+    </audio>
+    <audio id="buttonSound">
+        <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
+        Your browser doesn't support this audio.
+    </audio>
     <div class="container-fluid">
         <div class="row">
             <div class="chooseTitleContainer">
@@ -13,11 +26,13 @@
                         <label class="playerName-label" for="player1Name">PLAYER 1  ?</label>
                         <input class="inputNames" type="text" id="player1Name" name="player1Name" required oninvalid="this.setCustomValidity('Enter User Name Here'); this.style.borderColor = 'red';"
                         oninput="this.setCustomValidity('')">
+                        <span class="cursor" id="cursor1">_</span>
                     </div>
                     <br>
                     <div class="playerName">
                         <label class="playerName-label" for="player2Name">PLAYER 2  ?</label>
                         <input class="inputNames" type="text" id="player2Name" name="player2Name" required>
+                        <span class="cursor" id="cursor2">_</span>
                     </div>
                 </div>
                 <div class="confirmButtonContainer">
@@ -27,7 +42,54 @@
         </div>
     </div>
     <script>
-        function validateForm() {
+            const input1 = document.getElementById('player1Name');
+            const input2 = document.getElementById('player2Name');
+            const cursor1 = document.getElementById('cursor1');
+            const cursor2 = document.getElementById('cursor2');
+
+            const characterWidth1 = parseFloat(getComputedStyle(cursor1).width);
+            const characterWidth2 = parseFloat(getComputedStyle(cursor2).width);
+
+            const confirmButton = document.getElementById("confirmButton");
+            const buttonSound = document.getElementById("buttonSound");
+            const titleScreenMusic = document.getElementById("titleScreenMusic");
+
+            titleScreenMusic.volume = 0.2;
+
+            document.addEventListener("DOMContentLoaded", () => {
+                if (titleScreenMusic) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const storedPosition = urlParams.get('position');
+                    if (storedPosition !== null) {
+                        titleScreenMusic.currentTime = parseFloat(storedPosition);
+                        titleScreenMusic.play();
+                    }
+                }
+            });
+
+            input1.addEventListener('input', () => {
+                const inputText = input1.value;
+                const inputLength = inputText.length;
+
+                if (inputLength === 0) {
+                    cursor1.style.left = '0px';
+                } else {
+                    cursor1.style.left = `${inputLength * 1.5}vh`;
+                }
+            });
+
+            input2.addEventListener('input', () => {
+                const inputText = input2.value;
+                const inputLength = inputText.length;
+
+                if (inputLength === 0) {
+                    cursor2.style.left = '0px';
+                } else {
+                    cursor2.style.left = `${inputLength * 1.5}vh`;
+                }
+            });
+
+        async function validateForm() {
             let player1Name = document.getElementById("player1Name").value;
             let player2Name = document.getElementById("player2Name").value;
 
@@ -39,7 +101,15 @@
             } else if(player2Name.trim() === "") {
                 displayValidationAlert("Please enter a name for player 2.", "player2Name");
             } else {
-                document.getElementById("playerForm").submit();
+                buttonSound.play();
+
+                const currentPosition = titleScreenMusic.currentTime;
+
+                setTimeout(() => {
+                    const form = document.getElementById("playerForm");
+                    form.action = `${form.action}?position=${currentPosition}`;
+                    form.submit();
+                }, 300);
             }
         }
 
@@ -57,8 +127,13 @@
             inputField.parentNode.appendChild(alertDiv);
 
             setTimeout(function () {
-                alertDiv.remove("fade-out");
+                alertDiv.remove();
             }, 2500);
         }
+
+           /*  document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("loading-screen").style.display = "none"; //
+            });*/
+
     </script>
 }

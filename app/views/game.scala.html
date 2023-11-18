@@ -3,11 +3,8 @@
 @(tui: String, gameState: String, turn: Int, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
 
 @main("PokemonLite") {
-    @navbar()
+    @navbar("game")
     <div class="container-xl h-75">
-        <div class="turn">
-            Turn: Player @turn
-        </div>
         <div class="row">
             <div class="mx-auto game-field">
                 <div class="pokemon-status-wrapper-p2">
@@ -26,6 +23,9 @@
         </div>
         <div class="row">
             <div class="mx-auto menu-field">
+                <div class="turn">
+                    Turn: Player @turn
+                </div>
                 @if(gameState == "DesicionState()") {
                     @desicionState()
                 } else if(gameState == "FightingState()" && turn == 1) {

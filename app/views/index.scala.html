@@ -1,27 +1,99 @@
 @main("Welcome to PokemonLite") {
-  @navbar()
+  <!--<div id="loading-screen">
+    <div class="tenor-gif-embed" data-postid="13709403" data-share-method="host" data-aspect-ratio="1.3676" data-width="100%"><a href="https://tenor.com/view/pikachu-running-run-run-away-gif-13709403">Pikachu Running Sticker</a>from <a href="https://tenor.com/search/pikachu-stickers">Pikachu Stickers</a></div>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+      Loading...
+  </div>-->
+  @navbar("home")
+  <!-- remember: autoplay has to be enabled in chrome browser settings -->
+  <audio id="titleScreenMusic" autoplay loop >
+      <source src="@routes.Assets.versioned("audios/TitleScreenMusic.mp3")" type="audio/mpeg">
+  Your browser doesn't support this audio.
+  </audio>
+  <audio id="buttonSound">
+    <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
+    Your browser doesn't support this audio.
+  </audio>
   <div class="container-fluid">
     <div class="row">
       <div class="col-10 col-sm-9 col-md-11 col-lg-12 offset-md-0 offset-sm-1 text-center position-absolute">
           <img class="titleImage img-fluid" src="@routes.Assets.versioned("images/Logo.png")" alt="">
       </div>
       <div class="text-end col-md-8 offset-md-4 col-sm-3 offset-sm-9 text-end">
-        <a target ="_blank" href="/rules">
           <button id="rulesButton" class="bookButton">
             <img class="bookImage img-fluid" src="@routes.Assets.versioned("images/bookIcon.png")" alt="">
           </button>
-        </a>
       </div>
     </div>
     <div class="row">
       <div class="col-11 col-sm-12 col-md-12 col-lg-12 text-center">
-        <a href="/playerNames">
           <button id="startButton" class="pokeballButton">
             <img class="pokeballImage img-fluid" src="@routes.Assets.versioned("images/pokeball.png")" alt="">
+            <span class="startText"> Start!</span>
           </button>
-        </a>
-        <div class="startText"> Start!</div>
       </div>
     </div>
   </div>
+  <script>
+    const titleScreenMusic = document.getElementById("titleScreenMusic")
+    const buttonSound = document.getElementById("buttonSound");
+    const rulesButton = document.getElementById("rulesButton");
+    const startButton = document.getElementById("startButton");
+
+    titleScreenMusic.volume = 0.2;
+
+    let titleScreenMusicPosition = 0;
+
+    /*function redirectTo(path) {
+      buttonSound.play();
+      setTimeout(() => {
+        fetch(path, { method: "GET" })
+                .then(response => response.text())
+                .then(html => {
+                  // Update the current page content with the loaded HTML
+                  document.open();
+                  document.write(html);
+                  document.close();
+                })
+                .catch(error => console.error("Error loading content:", error));
+      }, 300);
+    }*/
+
+    function redirectTo(path) {
+      buttonSound.play();
+
+      const currentPosition = titleScreenMusic.currentTime;
+
+      setTimeout(() => {
+        window.location.href = `${path}?position=${currentPosition}`;
+      }, 300);
+    }
+
+    rulesButton.addEventListener("click", () => {
+        buttonSound.play();
+          setTimeout(() => {
+            window.open("/rules", "_blank");
+            }, 300);
+    });
+
+    startButton.addEventListener("click", () => {
+        redirectTo("/playerNames");
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (titleScreenMusic) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const storedPosition = urlParams.get('position');
+        if (storedPosition !== null) {
+          titleScreenMusic.currentTime = parseFloat(storedPosition);
+          titleScreenMusic.play();
+        }
+      }
+    });
+
+   /* document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("loading-screen").style.display = "none"; //
+    });*/
+
+  </script>
 }

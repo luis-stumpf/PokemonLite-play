@@ -20,6 +20,7 @@
     background: none;
     border: none;
     cursor: pointer;
+    display: inline-grid;
     margin-top: 44vh;
     overflow: hidden;
     position: relative;
@@ -40,16 +41,16 @@
         transform: rotate(0) translateX(0) translateY(0);
     }
     10% {
-        transform: rotate(2deg) translateX(-1px) translateY(-1px);
+        transform: rotate(2deg) translateX(1px) translateY(1px);
     }
     20% {
-        transform: rotate(-2deg) translateX(1px) translateY(1px);
+        transform: rotate(-2deg) translateX(-1px) translateY(-1px);
     }
     30% {
-        transform: rotate(1deg) translateX(-0.5px) translateY(-0.5px);
+        transform: rotate(1deg) translateX(0.5px) translateY(0.5px);
     }
     40% {
-        transform: rotate(-1deg) translateX(0.5px) translateY(0.5px);
+        transform: rotate(-1deg) translateX(-0.5px) translateY(-0.5px);
     }
     50% {
         transform: rotate(0.5deg) translateX(0) translateY(0);
@@ -73,13 +74,15 @@
     color: #fdc905;
     font-family: 'Press Start 2P', sans-serif;
     font-size: 2.5vh;
+    letter-spacing: 3px;
+    margin-left: 0.5vh;
     margin-top: 0.3vh;
-    text-align: center;
     text-shadow:
             -1.5px -1.5px 0 #395ea9,
             1.5px -1.5px 0 #395ea9,
             -1.5px  1.5px 0 #395ea9,
             1.5px  1.5px 0 #395ea9;
+    text-transform: uppercase;
     transition: filter 0.3s;
 }
 

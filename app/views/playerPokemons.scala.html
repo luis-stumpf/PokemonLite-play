@@ -1,7 +1,15 @@
 @import de.htwg.se.pokelite.model.PokemonType
 @(player1Name: String, player2Name: String, allPokemons: Array[PokemonType])
 @main("Choose your Pokemons") {
-    @navbar()
+    @navbar("playerPokemons")
+    <audio id="titleScreenMusic" autoplay loop >
+        <source src="@routes.Assets.versioned("audios/TitleScreenMusic.mp3")" type="audio/mpeg">
+        Your browser doesn't support this audio.
+    </audio>
+    <audio id="buttonSound">
+        <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
+        Your browser doesn't support this audio.
+    </audio>
     <div class="container-fluid">
         <div class="row">
         <div class="choosePokemonsTitleContainer">
@@ -16,7 +24,7 @@
             }
         </div>
         </div>
-        <form  method="POST" action="/initPokemons">
+        <form  method="POST" action="/initPokemons" id="pokemonForm">
             <div class="pokemonSelectionContainer">
                 <div class="pokemonSelection">
                     <div class="pokemonLabel">
@@ -86,8 +94,32 @@
                 </div>
             </div>
             <div class="startButtonContainer">
-                <input class="confirmButton" type="submit" value="CONFIRM">
+                <input class="confirmButton" type="button" value="CONFIRM" onclick="buttonClickSound()">
             </div>
         </form>
     </div>
+    <script>
+            const titleScreenMusic = document.getElementById("titleScreenMusic");
+            const buttonSound = document.getElementById("buttonSound");
+
+            titleScreenMusic.volume = 0.2;
+
+            function buttonClickSound() {
+                buttonSound.play();
+                setTimeout(() => {
+                    document.getElementById("pokemonForm").submit();
+                }, 300);
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                if (titleScreenMusic) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const storedPosition = urlParams.get('position');
+                    if (storedPosition !== null) {
+                        titleScreenMusic.currentTime = parseFloat(storedPosition);
+                        titleScreenMusic.play();
+                    }
+                }
+            });
+    </script>
 }

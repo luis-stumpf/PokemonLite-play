@@ -6,6 +6,7 @@
 }
 @titleBackground: url("../images/PlayerNamesTitle.png");
 @fontColour: #626262;
+@navBarColour: rgba(193, 229, 252, 0.94);
 @textShadow: 2px 2px rgba(210, 212, 202, 100);
 
 
@@ -15,13 +16,25 @@
 @import "pokemonChoose";
 @import "gamefield";
 
+.bi-house::before {
+  line-height: 1.27 !important;
+}
+
+.bi-book::before {
+  line-height: 1.19 !important;
+}
+
+.bi-gear::before {
+  line-height: 1.15 !important;
+}
+
 .custom-navbar {
-  background-color: #c1e5fced;
-  height: 6%
+  background-color: @navBarColour !important;
+  height: 5.5%
 }
 
 .dropdown-menu {
-  --bs-dropdown-bg: #c1e5fced !important;
+  --bs-dropdown-bg: @navBarColour !important;
   --bs-dropdown-border-color: none !important;
   --bs-dropdown-link-color: #0d59be !important;
   --bs-dropdown-link-hover-color: #ffffff !important;
@@ -29,9 +42,27 @@
   min-width: 0;
 }
 
+.dropdown-toggle::after {
+  vertical-align: 0.09em !important;
+}
+
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
 .navBarFont {
   font-family: 'Pokemon Fire Red', sans-serif;
   font-size: 3vh;
+  margin-left: 0.2vh;
 }
 
 .nav-link {
