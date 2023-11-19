@@ -1,13 +1,7 @@
 @main("PokemonLite Rules"){
+    @loadingScreen()
+    @audio("rules")
     @navbar("rules")
-    <audio id="coverTurnSound">
-        <source src="@routes.Assets.versioned("audios/coverTurn.mp3")" type="audio/mpeg">
-        Your browser doesn't support this audio.
-    </audio>
-    <audio id="pageTurnSound">
-        <source src="@routes.Assets.versioned("audios/pageTurn.mp3")" type="audio/mpeg">
-        Your browser doesn't support this audio.
-    </audio>
     <div class="container-fluid">
         <div class="row">
             <div class="text-center position-absolute">
@@ -29,70 +23,75 @@
                             <label class="prev" for="checkbox-cover"></label>
                         </div>
                     </div>
-                    <div class="page" id="page1">
-                        <div class="front-page">
-                            <span style="font-size: 2.5vh; font-weight: bold">Welcome to PokemonLite!</span>
-                            <br>
-                            <p>A fun and interactive game that brings the world of Pokemon to your web browser</p>
-                            <label class="next" for="checkbox-page1"><i class="fas fa-chevron-right"></i></label>
-                        </div>
-                        <div class="back-page">
-                            <span style="font-size: 2.5vh; font-weight: bold">How to play:</span>>
-                            <br>
-                            <ul>
-                                <li>Choose your names first.</li>
+                   <!-- <div class="paper-pages2" id="paper-pages2"> start of pretty turnable pages-->
+                        <div class="page" id="page1">
+                            <div class="page-background"></div>
+                            <div class="front-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">Welcome to PokemonLite!</span>
                                 <br>
-                                <li>Select three Pokemon to form your team. Each Pokemon has its own unique abilities.</li>
+                                <p>A fun and interactive game that brings the world of Pokemon to your web browser</p>
+                                <label class="next" for="checkbox-page1"><i class="fas fa-chevron-right"></i></label>
+                            </div>
+                            <div class="back-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">How to play:</span>
                                 <br>
-                                <li>Battle other trainers and become the ultimate Pokemon Master!</li>
-                            </ul>
-                            <label class="prev" for="checkbox-page1"><i class="fas fa-chevron-left"></i></label>
+                                <ul>
+                                    <li>Choose your names first.</li>
+                                    <br>
+                                    <li>Select three Pokemon to form your team. Each Pokemon has its own unique abilities.</li>
+                                    <br>
+                                    <li>Battle other trainers and become the ultimate Pokemon Master!</li>
+                                </ul>
+                                <label class="prev" for="checkbox-page1"><i class="fas fa-chevron-left"></i></label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="page" id="page2">
-                        <div class="front-page">
-                            <span style="font-size: 2.5vh; font-weight: bold">Game Rules:</span>
-                            <br>
-                            <ul>
-                                <li>At the start of each battle, you must choose between two actions: 'Fight' or 'Switch Pokemon.'</li>
+                        <div class="page" id="page2">
+                            <div class="page-background"></div>
+                            <div class="front-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">Game Rules:</span>
                                 <br>
-                                <li>'Fight' allows your active Pokemon to use its special move against the opponent.</li>
-                            </ul>
-                            <label class="next" for="checkbox-page2"><i class="fas fa-chevron-right"></i></label>
+                                <ul>
+                                    <li>At the start of each battle, you must choose between two actions: 'Fight' or 'Switch Pokemon.'</li>
+                                    <br>
+                                    <li>'Fight' allows your active Pokemon to use its special move against the opponent.</li>
+                                </ul>
+                                <label class="next" for="checkbox-page2"><i class="fas fa-chevron-right"></i></label>
+                            </div>
+                            <div class="back-page">
+                                <ul>
+                                    <li>'Switch Pokemon' enables you to switch your current Pokemon with another from your team.</li>
+                                    <br>
+                                    <li>The battle continues until one trainer's team is defeated, or the player's last Pokemon faints.</li>
+                                </ul>
+                                <label class="prev" for="checkbox-page2"><i class="fas fa-chevron-left"></i></label>
+                            </div>
                         </div>
-                        <div class="back-page">
-                            <ul>
-                                <li>'Switch Pokemon' enables you to switch your current Pokemon with another from your team.</li>
+                        <div class="page" id="page3">
+                            <div class="page-background"></div>
+                            <div class="front-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">History of PokemonLite:</span>
                                 <br>
-                                <li>The battle continues until one trainer's team is defeated, or the player's last Pokemon faints.</li>
-                            </ul>
-                            <label class="prev" for="checkbox-page2"><i class="fas fa-chevron-left"></i></label>
+                                <p>PokemonLite is a project born out of a passion for both Pokemon and web development. Developed as an exercise for the Web-Application lecture at HTWG Konstanz, it has grown into a full-fledged Scala Play Project.</p>
+                                <label class="next" for="checkbox-page3"><i class="fas fa-chevron-right"></i></label>
+                            </div>
+                            <div class="back-page">
+                                <p>Originally created for the Software Engineering course, PokemonLite is now a dynamic online platform where players can engage in epic battles with their favorite Pokemon.</p>
+                                <label class="prev" for="checkbox-page3"><i class="fas fa-chevron-left"></i></label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="page" id="page3">
-                        <div class="front-page">
-                            <span style="font-size: 2.5vh; font-weight: bold">History of PokemonLite:</span>
-                            <br>
-                            <p>PokemonLite is a project born out of a passion for both Pokemon and web development. Developed as an exercise for the Web-Application lecture at HTWG Konstanz, it has grown into a full-fledged Scala Play Project.</p>
-                            <label class="next" for="checkbox-page3"><i class="fas fa-chevron-right"></i></label>
-                        </div>
-                        <div class="back-page">
-                            <p>Originally created for the Software Engineering course, PokemonLite is now a dynamic online platform where players can engage in epic battles with their favorite Pokemon.</p>
-                            <label class="prev" for="checkbox-page3"><i class="fas fa-chevron-left"></i></label>
-                        </div>
-                    </div>
-                    <div class="page" id="page4">
-                        <div class="front-page">
-                            <span style="font-size: 2.5vh; font-weight: bold">How to interact with the code:</span>
-                            <br>
-                            <ul>
-                                <li>Compile the code with 'sbt compile.'</li>
+                        <div class="page" id="page4">
+                            <div class="page-background"></div>
+                            <div class="front-page">
+                                <span style="font-size: 2.5vh; font-weight: bold">How to interact with the code:</span>
                                 <br>
-                                <li>Run the game using 'sbt run.'</li>
-                                <br>
-                                <li>Open 'localhost:9000' on your browser and experiment with the game</li>
-                            </ul>
-                        </div>
+                                <ul>
+                                    <li>Compile the code with 'sbt compile.'</li>
+                                    <br>
+                                    <li>Run the game using 'sbt run.'</li>
+                                    <br>
+                                    <li>Open 'localhost:9000' on your browser and experiment with the game</li>
+                                </ul>
+                            </div>
                     </div>
                     <div class="back-cover">
                     </div>
@@ -114,5 +113,20 @@
                 }
             });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            setTimeout(() => {
+                document.getElementById("loading-screen").style.display = "none";
+            }, 1000);
+        });
+
+        $ ('#paper-pages').turn({gradients: true, acceleration: true});
     </script>
+    <svg>
+        <filter id="wavy2">
+            <feTurbulence x="0" y="0" baseFrequency="0.005" numOctaves="4" seed="1" />
+            <feDisplacementMap in="SourceGraphic" scale="10" />
+        </filter>
+    </svg>
 }

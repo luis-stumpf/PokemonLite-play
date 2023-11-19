@@ -1,19 +1,8 @@
 @main("Welcome to PokemonLite") {
-  <!--<div id="loading-screen">
-    <div class="tenor-gif-embed" data-postid="13709403" data-share-method="host" data-aspect-ratio="1.3676" data-width="100%"><a href="https://tenor.com/view/pikachu-running-run-run-away-gif-13709403">Pikachu Running Sticker</a>from <a href="https://tenor.com/search/pikachu-stickers">Pikachu Stickers</a></div>
-    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-      Loading...
-  </div>-->
+  @loadingScreen()
   @navbar("home")
   <!-- remember: autoplay has to be enabled in chrome browser settings -->
-  <audio id="titleScreenMusic" autoplay loop >
-      <source src="@routes.Assets.versioned("audios/TitleScreenMusic.mp3")" type="audio/mpeg">
-  Your browser doesn't support this audio.
-  </audio>
-  <audio id="buttonSound">
-    <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
-    Your browser doesn't support this audio.
-  </audio>
+  @audio()
   <div class="container-fluid">
     <div class="row">
       <div class="col-10 col-sm-9 col-md-11 col-lg-12 offset-md-0 offset-sm-1 text-center position-absolute">
@@ -91,9 +80,18 @@
       }
     });
 
-   /* document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById("loading-screen").style.display = "none"; //
-    });*/
+   /* old version, but page loads to fast and you cant see the loading screen, thats why delay was added, can be removed later
+   document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("loading-screen").style.display = "none";
+    });
+    */
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      setTimeout(() => {
+        document.getElementById("loading-screen").style.display = "none";
+      }, 1000);
+    });
 
   </script>
 }

@@ -1,0 +1,27 @@
+@(currentPage: String = " ")
+    @if(currentPage == "rules") {
+        <audio id="coverTurnSound">
+            <source src="@routes.Assets.versioned("audios/coverTurn.mp3")" type="audio/mpeg">
+            Your browser doesn't support this audio.
+        </audio>
+        <audio id="pageTurnSound">
+            <source src="@routes.Assets.versioned("audios/pageTurn.mp3")" type="audio/mpeg">
+            Your browser doesn't support this audio.
+        </audio>
+    } else {
+        @if(currentPage == "game") {
+            <audio id="gameFieldMusic" autoplay loop >
+                <source src="@routes.Assets.versioned("audios/GameFieldMusic.mp3")" type="audio/mpeg">
+                Your browser doesn't support this audio.
+            </audio>
+        } else {
+            <audio id="titleScreenMusic" autoplay loop >
+                <source src="@routes.Assets.versioned("audios/TitleScreenMusic.mp3")" type="audio/mpeg">
+                Your browser doesn't support this audio.
+            </audio>
+        }
+        <audio id="buttonSound">
+            <source src="@routes.Assets.versioned("audios/buttonClick.mp3")" type="audio/mpeg">
+            Your browser doesn't support this audio.
+        </audio>
+    }

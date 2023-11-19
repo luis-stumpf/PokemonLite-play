@@ -1,9 +1,10 @@
 @import de.htwg.se.pokelite.model.Pokemon
 @import de.htwg.se.pokelite.model.PokePack
-@(tui: String, gameState: String, turn: Int, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
+@(tui: String, gameState: String, turn: Int, player1Name: String, player2Name: String, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
 
 @main("PokemonLite") {
     @navbar("game")
+    @audio("game")
     <div class="container-xl h-75">
         <div class="row">
             <div class="mx-auto game-field">
@@ -24,7 +25,12 @@
         <div class="row">
             <div class="mx-auto menu-field">
                 <div class="turn">
-                    Turn: Player @turn
+                    @if(turn == 1) {
+                        It's your turn @player1Name !
+                    }
+                    @if(turn == 2) {
+                        It's your turn @player2Name !
+                    }
                 </div>
                 @if(gameState == "DesicionState()") {
                     @desicionState()

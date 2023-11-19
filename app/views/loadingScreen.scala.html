@@ -1,0 +1,12 @@
+@(currentPage: String = " ")
+    @if(currentPage == "game") {
+    <div id="game-loading-screen">
+        <!-- TO DO: add different loading screen for game loading screen -->
+        <img class="game-loading-gif img-fluid" src="@routes.Assets.versioned("images/game-loading.gif")" alt="">
+    </div>
+    } else {
+        <div id="loading-screen">
+            <img class="loading-gif img-fluid" src="@routes.Assets.versioned("images/loading.gif")" alt="">
+            <img class="progressBar-gif img-fluid" src="@routes.Assets.versioned("images/progressBar.gif")" alt="">
+        </div>
+    }

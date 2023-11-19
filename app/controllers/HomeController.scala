@@ -70,6 +70,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
             gameString,
             controller.game.state.toString,
             controller.game.turn,
+            namePlayer1,
+            namePlayer2,
             currentPokemonPlayer1,
             currentPokemonPlayer2,
             pokemonsPlayer1,
