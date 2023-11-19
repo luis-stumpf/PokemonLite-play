@@ -1,7 +1,6 @@
 @main("Welcome to PokemonLite") {
   @loadingScreen()
   @navbar("home")
-  <!-- remember: autoplay has to be enabled in chrome browser settings -->
   @audio()
   <div class="container-fluid">
     <div class="row">
@@ -80,7 +79,7 @@
       }
     });
 
-   /* old version, but page loads to fast and you cant see the loading screen, thats why delay was added, can be removed later
+   /* old version, but page loads too fast and you cant see the loading screen, thats why delay was added, can be removed later
    document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("loading-screen").style.display = "none";
     });

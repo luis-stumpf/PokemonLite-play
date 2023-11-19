@@ -116,15 +116,19 @@
             inputField.parentNode.appendChild(alertDiv);
 
             setTimeout(function () {
-                alertDiv.remove();
+                alertDiv.classList.add("fade-out");
             }, 2500);
+
+            setTimeout(function () {
+                alertDiv.remove();
+            }, 7600);
         }
 
         document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(() => {
                 document.getElementById("loading-screen").style.display = "none";
-            }, 5000);
+            }, 3000); //hier bisle länger erzwungen damit man den screen auch sehen kann
         });
     </script>
 }

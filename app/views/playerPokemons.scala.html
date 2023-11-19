@@ -20,7 +20,7 @@
         </div>
         <form  method="POST" action="/initPokemons" id="pokemonForm">
             <div class="pokemonSelectionContainer">
-                <div class="pokemonSelection">
+                <div class="pokemonSelection" id="selection1">
                     <div class="pokemonLabel">
                         <label for="player1Pokemon1">@player1Name's Pokemons: </label>
                     </div>
@@ -53,7 +53,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="pokemonSelection">
+                <div class="pokemonSelection" id="selection2">
                     <div class="pokemonLabel">
                         <label for="player2Pokemon1">@player2Name's Pokemons: </label>
                     </div>
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="startButtonContainer">
-                <input class="confirmButton" type="button" value="CONFIRM" onclick="buttonClickSound()">
+                <input class="confirmButton" type="button" value="CONFIRM" onclick="checkSelection()">
             </div>
         </form>
     </div>
@@ -98,11 +98,52 @@
 
             titleScreenMusic.volume = 0.2;
 
-            function buttonClickSound() {
-                buttonSound.play();
-                setTimeout(() => {
-                    document.getElementById("pokemonForm").submit();
-                }, 300);
+            function displayValidationAlert(message, inputId) {
+                let inputField = document.getElementById(inputId);
+                let alertDiv = document.createElement("div");
+                alertDiv.className = "alert alert-warning alert-dismissible fade show mt-1";
+                alertDiv.role = "alert";
+                alertDiv.innerHTML = message;
+                let closeButton = document.createElement("button");
+                closeButton.type = "button";
+                closeButton.className = "btn-close";
+                closeButton.setAttribute("data-bs-dismiss", "alert");
+                alertDiv.appendChild(closeButton);
+                inputField.parentNode.appendChild(alertDiv);
+
+                setTimeout(function () {
+                    alertDiv.classList.add("fade-out");
+                }, 2500);
+
+                setTimeout(function () {
+                    alertDiv.remove();
+                }, 7600);
+            }
+
+            function checkSelection() {
+                let player1Pokemon1 = document.getElementById("player1Pokemon1").value;
+                let player1Pokemon2 = document.getElementById("player1Pokemon2").value;
+                let player1Pokemon3 = document.getElementById("player1Pokemon3").value;
+
+                let player2Pokemon1 = document.getElementById("player2Pokemon1").value;
+                let player2Pokemon2 = document.getElementById("player2Pokemon2").value;
+                let player2Pokemon3 = document.getElementById("player2Pokemon3").value;
+
+                if ((player1Pokemon1.trim() === "" || player1Pokemon2.trim() === "" || player1Pokemon3.trim() === "")
+                && (player2Pokemon1.trim() === "" || player2Pokemon2.trim() === "" || player2Pokemon3.trim() === "" )) {
+                    displayValidationAlert("Please select your Pokemons player 1.", "selection1");
+                    displayValidationAlert("Please select your Pokemons player 2.", "selection2");
+                } else if (player1Pokemon1.trim() === "" || player1Pokemon2.trim() === "" || player1Pokemon3.trim() === "") {
+                    displayValidationAlert("Please select your Pokemons player 1.", "selection1");
+                } else if (player2Pokemon1.trim() === "" || player2Pokemon2.trim() === "" || player2Pokemon3.trim() === "") {
+                    displayValidationAlert("Please select your Pokemons player 2.", "selection2");
+                } else {
+                    buttonSound.play();
+
+                    setTimeout(() => {
+                        document.getElementById("pokemonForm").submit();
+                    }, 300);
+                }
             }
 
             document.addEventListener("DOMContentLoaded", () => {
@@ -117,7 +158,6 @@
             });
 
             document.addEventListener("DOMContentLoaded", function () {
-
                 setTimeout(() => {
                     document.getElementById("loading-screen").style.display = "none";
                 }, 1000);

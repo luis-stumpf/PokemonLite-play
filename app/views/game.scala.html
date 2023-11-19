@@ -3,6 +3,7 @@
 @(tui: String, gameState: String, turn: Int, player1Name: String, player2Name: String, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
 
 @main("PokemonLite") {
+    @loadingScreen()<!-- TO DO: add "game" and find pretty game loading screen-->
     @navbar("game")
     @audio("game")
     <div class="container-xl h-75">
@@ -46,4 +47,12 @@
             </div>
         </div>
     </div>
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                setTimeout(() => {
+                    document.getElementById("loading-screen").style.display = "none";
+                }, 1000);
+            });
+    </script>
 }

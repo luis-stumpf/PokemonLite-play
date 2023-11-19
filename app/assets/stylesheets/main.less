@@ -15,6 +15,11 @@
 @import "pokemonChoose";
 @import "gamefield";
 
+.alert-warning {
+  margin-bottom: -8vh !important;
+  z-index: 99 !important;
+}
+
 .bi-house::before {
   line-height: 1.27 !important;
 }
@@ -43,6 +48,11 @@
 
 .dropdown-toggle::after {
   vertical-align: 0.09em !important;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 5s ease-out;
 }
 
 .loading-gif {
@@ -101,6 +111,8 @@ html {
 }
 
 body {
+  overflow: hidden;
+
   justify-content: center;
   align-items: center;
   height: 100vh;
