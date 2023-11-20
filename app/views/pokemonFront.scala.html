@@ -1,9 +1,28 @@
 @(pokemon: String)
-<div>
-    <img
+<img
+        class="img-fluid"
+        id="bubbles2"
+        src="@routes.Assets.versioned("images/attackGifs/bubbles.gif")"
+        alt="pokemon front"
+        style="width: 40%; margin-left: 10%; margin-top: 10%; object-fit: contain; display: none; z-index: 2"
+>
+<img
+        class="img-fluid"
+        id="fire2"
+        src="@routes.Assets.versioned("images/attackGifs/fire.gif")"
+        alt="pokemon front"
+        style="width: 40%; margin-left: 10%; margin-top: 10%; object-fit: contain; display: none; z-index: 2"
+>
+<img
+        class="img-fluid"
+        id="punch2"
+        src="@routes.Assets.versioned("images/attackGifs/punch.gif")"
+        alt="pokemon front"
+        style="width: 40%; margin-left: 10%; margin-top: 10%; object-fit: contain; display: none; z-index: 2"
+>
+<img
         class="img-fluid"
         src="@routes.Assets.versioned("images/pokemons/" + pokemon.split("\\s+").headOption.getOrElse("") +"Front.gif")"
         alt="pokemon front"
-        style="width: 60%"
-    >
-</div>
+        style="width: 40%; margin-left: 10%; margin-top: 10%; object-fit: contain"
+>

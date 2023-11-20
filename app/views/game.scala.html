@@ -6,47 +6,54 @@
     @loadingScreen()<!-- TO DO: add "game" and find pretty game loading screen-->
     @navbar("game")
     @audio("game")
-    <div class="container-xl h-75">
-        <div class="row">
-            <div class="mx-auto game-field">
-                <div class="pokemon-status-wrapper-p2">
-                    @playerStatus(pokemon = pokemonPlayer2)
+    <div class="container">
+        <div class="image-container">
+            <img class="" src="@routes.Assets.versioned("images/gamefield.jpg")">
+            <div class="overlay-content">
+                <div class="row h-50">
+                    <div class="col">
+                        @playerStatus(pokemon = pokemonPlayer2)
+                    </div>
+                    <div class="col position-relative">
+                        @pokemonFront(pokemon = pokemonPlayer2.toString)
+                    </div>
                 </div>
-                <div class="pokemon-wrapper-p1">
-                    @pokemonBack(pokemon = pokemonPlayer1.toString)
-                </div>
-                <div class="pokemon-wrapper-p2">
-                    @pokemonFront(pokemon = pokemonPlayer2.toString)
-                </div>
-                <div class="pokemon-status-wrapper-p1">
-                    @playerStatus(pokemon = pokemonPlayer1)
+                <div class="row h-50">
+                    <div class="col position-relative">
+                        @pokemonBack(pokemon = pokemonPlayer1.toString)
+                    </div>
+                    <div class="col">
+                        @playerStatus(pokemon = pokemonPlayer1)
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="mx-auto menu-field">
-                <div class="turn">
-                    @if(turn == 1) {
-                        It's your turn @player1Name !
-                    }
-                    @if(turn == 2) {
-                        It's your turn @player2Name !
-                    }
-                </div>
-                @if(gameState == "DesicionState()") {
-                    @desicionState()
-                } else if(gameState == "FightingState()" && turn == 1) {
-                    @fightingState(pokemon = pokemonPlayer1)
-                } else if(gameState == "FightingState()" && turn == 2) {
-                    @fightingState(pokemon = pokemonPlayer2)
-                } else if(gameState == "SwitchPokemonState()" && turn == 1) {
-                    @switchPokemonState(pokePack = pokePackPlayer1)
-                } else if(gameState == "SwitchPokemonState()" && turn == 2) {
-                    @switchPokemonState(pokePack = pokePackPlayer2)
+
+    <div class="container">
+        <div class="mx-auto menu-field">
+            <div class="turn">
+                @if(turn == 1) {
+                    It's your turn @player1Name !
+                }
+                @if(turn == 2) {
+                    It's your turn @player2Name !
                 }
             </div>
+            @if(gameState == "DesicionState()") {
+                @desicionState()
+            } else if(gameState == "FightingState()" && turn == 1) {
+            @fightingState(pokemon = pokemonPlayer1, isTurn = turn)
+            } else if(gameState == "FightingState()" && turn == 2) {
+            @fightingState(pokemon = pokemonPlayer2, isTurn = turn)
+            } else if(gameState == "SwitchPokemonState()" && turn == 1) {
+            @switchPokemonState(pokePack = pokePackPlayer1)
+            } else if(gameState == "SwitchPokemonState()" && turn == 2) {
+            @switchPokemonState(pokePack = pokePackPlayer2)
+            }
         </div>
     </div>
+</div>
+
     <script>
             document.addEventListener("DOMContentLoaded", function () {
 
