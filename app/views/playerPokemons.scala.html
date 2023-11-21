@@ -121,13 +121,13 @@
             }
 
             function checkSelection() {
-                let player1Pokemon1 = document.getElementById("player1Pokemon1").value;
-                let player1Pokemon2 = document.getElementById("player1Pokemon2").value;
-                let player1Pokemon3 = document.getElementById("player1Pokemon3").value;
+                let player1Pokemon1 = $("#player1Pokemon1").val();
+                let player1Pokemon2 = $("#player1Pokemon2").val();
+                let player1Pokemon3 = $("#player1Pokemon3").val();
 
-                let player2Pokemon1 = document.getElementById("player2Pokemon1").value;
-                let player2Pokemon2 = document.getElementById("player2Pokemon2").value;
-                let player2Pokemon3 = document.getElementById("player2Pokemon3").value;
+                let player2Pokemon1 = $("#player2Pokemon1").val();
+                let player2Pokemon2 = $("#player2Pokemon2").val();
+                let player2Pokemon3 = $("#player2Pokemon3").val()
 
                 if ((player1Pokemon1.trim() === "" || player1Pokemon2.trim() === "" || player1Pokemon3.trim() === "")
                 && (player2Pokemon1.trim() === "" || player2Pokemon2.trim() === "" || player2Pokemon3.trim() === "" )) {
@@ -159,7 +159,7 @@
 
             document.addEventListener("DOMContentLoaded", function () {
                 setTimeout(() => {
-                    document.getElementById("loading-screen").style.display = "none";
+                    $("#loading-screen").hide();
                 }, 1000);
             });
 
