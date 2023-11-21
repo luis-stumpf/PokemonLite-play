@@ -8,6 +8,7 @@ import de.htwg.se.pokelite.model.states.{DesicionState, FightingState, GameOverS
 
 import javax.inject._
 import play.api.mvc._
+import play.api.libs.json._
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -39,6 +40,11 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
         controller.attackWith(input)
 
         Redirect(routes.HomeController.field)
+    }
+
+    def gameJson(): Action[AnyContent] = Action { implicit request =>
+        val gameJson = controller.game.toJson
+        Ok(gameJson)
     }
 
     def game(): Action[AnyContent] = Action { implicit request =>

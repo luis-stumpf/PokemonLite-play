@@ -8,7 +8,8 @@ lazy val root = (project in file("."))
     name := """PokemonLite-play""",
     Compile / scalacOptions += "-Ytasty-reader",
     libraryDependencies ++= Seq(
-      guice,
-      "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
+        guice,
+        "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
+        "org.playframework" %% "play-json" % "3.0.1"
     )
   )
