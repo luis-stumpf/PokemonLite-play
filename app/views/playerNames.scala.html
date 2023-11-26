@@ -1,5 +1,4 @@
 @main("Choose your names") {
-    @loadingScreen()
     @navbar("playerNames")
     @audio()
     <div class="container-fluid">
@@ -9,12 +8,10 @@
             </div>
         </div>
         <div class="row">
-            <form method="POST" action="/initPlayers" id="playerForm">
                 <div class="playerNamesContainer">
                     <div class="playerName1">
                         <label class="playerName-label" for="player1Name">PLAYER 1  ?</label>
-                        <input class="inputNames" type="text" id="player1Name" name="player1Name" required oninvalid="this.setCustomValidity('Enter User Name Here'); this.style.borderColor = 'red';"
-                        oninput="this.setCustomValidity('')">
+                        <input class="inputNames" type="text" id="player1Name" name="player1Name" required>
                         <span class="cursor" id="cursor1">_</span>
                     </div>
                     <br>
@@ -25,110 +22,9 @@
                     </div>
                 </div>
                 <div class="confirmButtonContainer">
-                    <input class="confirmButton" type="button" value="CONFIRM" onclick="validateForm()">
+                    <input class="confirmButton" id="confirmButton" type="button" value="CONFIRM">
                 </div>
-            </form>
         </div>
     </div>
-    <script>
-            const input1 = document.getElementById('player1Name');
-            const input2 = document.getElementById('player2Name');
-            const cursor1 = document.getElementById('cursor1');
-            const cursor2 = document.getElementById('cursor2');
-
-            const characterWidth1 = parseFloat(getComputedStyle(cursor1).width);
-            const characterWidth2 = parseFloat(getComputedStyle(cursor2).width);
-
-            const confirmButton = document.getElementById("confirmButton");
-            const buttonSound = document.getElementById("buttonSound");
-            const titleScreenMusic = document.getElementById("titleScreenMusic");
-
-            titleScreenMusic.volume = 0.2;
-
-            document.addEventListener("DOMContentLoaded", () => {
-                if (titleScreenMusic) {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const storedPosition = urlParams.get('position');
-                    if (storedPosition !== null) {
-                        titleScreenMusic.currentTime = parseFloat(storedPosition);
-                        titleScreenMusic.play();
-                    }
-                }
-            });
-
-            input1.addEventListener('input', () => {
-                const inputText = input1.value;
-                const inputLength = inputText.length;
-
-                if (inputLength === 0) {
-                    cursor1.style.left = '0px';
-                } else {
-                    cursor1.style.left = `${inputLength * 1.5}vh`;
-                }
-            });
-
-            input2.addEventListener('input', () => {
-                const inputText = input2.value;
-                const inputLength = inputText.length;
-
-                if (inputLength === 0) {
-                    cursor2.style.left = '0px';
-                } else {
-                    cursor2.style.left = `${inputLength * 1.5}vh`;
-                }
-            });
-
-        async function validateForm() {
-            let player1Name = document.getElementById("player1Name").value;
-            let player2Name = document.getElementById("player2Name").value;
-
-            if (player1Name.trim() === "" && player2Name.trim() === "") {
-                displayValidationAlert("Please enter a name for player 1.", "player1Name");
-                displayValidationAlert("Please enter a name for player 2", "player2Name");
-            } else if(player1Name.trim() === "") {
-                displayValidationAlert("Please enter a name for player 1.", "player1Name");
-            } else if(player2Name.trim() === "") {
-                displayValidationAlert("Please enter a name for player 2.", "player2Name");
-            } else {
-                buttonSound.play();
-
-                const currentPosition = titleScreenMusic.currentTime;
-
-                setTimeout(() => {
-                    const form = document.getElementById("playerForm");
-                    form.action = `${form.action}?position=${currentPosition}`;
-                    form.submit();
-                }, 300);
-            }
-        }
-
-        function displayValidationAlert(message, inputId) {
-            let inputField = document.getElementById(inputId);
-            let alertDiv = document.createElement("div");
-            alertDiv.className = "alert alert-warning alert-dismissible fade show mt-2";
-            alertDiv.role = "alert";
-            alertDiv.innerHTML = message;
-            let closeButton = document.createElement("button");
-            closeButton.type = "button";
-            closeButton.className = "btn-close";
-            closeButton.setAttribute("data-bs-dismiss", "alert");
-            alertDiv.appendChild(closeButton);
-            inputField.parentNode.appendChild(alertDiv);
-
-            setTimeout(function () {
-                alertDiv.classList.add("fade-out");
-            }, 2500);
-
-            setTimeout(function () {
-                alertDiv.remove();
-            }, 7600);
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-            setTimeout(() => {
-                $("#loading-screen").hide()
-            }, 3000); //hier bisle länger erzwungen damit man den screen auch sehen kann
-        });
-    </script>
+    <script src="@routes.Assets.versioned("javascripts/playerNames.js")"></script>
 }

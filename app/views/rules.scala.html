@@ -1,5 +1,4 @@
 @main("PokemonLite Rules"){
-    @loadingScreen()
     @audio("rules")
     @navbar("rules")
     <div class="container-fluid">
@@ -89,44 +88,7 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const pageTurnSound = document.getElementById("pageTurnSound");
-        const coverTurnSound = document.getElementById("coverTurnSound");
-        
-        $(document).ready(function() {
-            $('#flipbook').turn({
-                gradients: true,
-                acceleration: true,
-                autoCenter: false,
-                when: {
-                    turning: function(event, page) {
-                        if (page === 1 || page === 2 || page === 11) {
-                            coverTurnSound.play();
-                        } else {
-                            pageTurnSound.play();
-                        }
-
-                        if (page === 1) {
-                            $('.front-cover-back').removeClass('fixed');
-                            $('.bookContainer').css('transform', 'translateX(-19vh)');
-                        } else {
-                            $('.front-cover-back').addClass('fixed');
-                            $('.bookContainer').css('transform', 'translateX(0)');
-                        }
-                    }
-                }
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            setTimeout(() => {
-                document.getElementById("loading-screen").style.display = "none";
-            }, 1000);
-        });
-
-    </script>
-
+    <script src="@routes.Assets.versioned("javascripts/rules.js")"></script>
     <svg>
         <filter id="wavy2">
             <feTurbulence x="0" y="0" baseFrequency="0.005" numOctaves="4" seed="1" />

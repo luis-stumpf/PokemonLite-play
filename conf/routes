@@ -8,7 +8,13 @@ GET     /                           controllers.HomeController.index()
 
 GET     /rules                      controllers.HomeController.rules()
 
-GET     /playerNames                controllers.HomeController.playerNames()
++nocsrf
+POST    /playerNames                       controllers.HomeController.initPlayers
+GET     /playerNames                       controllers.HomeController.playerNames
+
++nocsrf
+POST    /playerPokemons                       controllers.HomeController.initPokemons
+GET     /playerPokemons                       controllers.HomeController.playerPokemons
 
 GET     /game                       controllers.HomeController.game()
 

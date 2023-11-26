@@ -6,25 +6,25 @@
     @audio()
     <div class="container-fluid">
         <div class="row">
-        <div class="choosePokemonsTitleContainer">
-            <div class="chooseTitle">CHOOSE YOUR POKEMONS !</div>
+            <div class="choosePokemonsTitleContainer">
+                <div class="chooseTitle">CHOOSE YOUR POKEMONS !</div>
+            </div>
+            <div class="showcase-box">
+                @for((pokemon, index) <- allPokemons.zipWithIndex) {
+                    <div class="img-wrapper">
+                        @pokemon.name
+                        <img class="pokemon-image img-fluid" src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="200" alt="">
+                    </div>
+                }
+            </div>
         </div>
-        <div class="showcase-box">
-            @for((pokemon, index) <- allPokemons.zipWithIndex) {
-                <div class="img-wrapper">
-                    @pokemon.name
-                    <img class="pokemon-image img-fluid" src="@routes.Assets.versioned("images/pokemons/" + pokemon.name +"Front.gif")" height="200" alt="">
-                </div>
-            }
-        </div>
-        </div>
-        <form  method="POST" action="/initPokemons" id="pokemonForm">
+        <div class="row">
             <div class="pokemonSelectionContainer">
-                <div class="pokemonSelection" id="selection1">
+                <div class="pokemonSelection">
                     <div class="pokemonLabel">
                         <label for="player1Pokemon1">@player1Name's Pokemons: </label>
                     </div>
-                    <div>
+                    <div id="selection1">
                         <select id="player1Pokemon1" name="player1Pokemon1">
                             <option value="" disabled selected style="display: none;"></option>
                             @for((pokemon, index) <- allPokemons.zipWithIndex) {
@@ -53,11 +53,11 @@
                         </select>
                     </div>
                 </div>
-                <div class="pokemonSelection" id="selection2">
+                <div class="pokemonSelection">
                     <div class="pokemonLabel">
                         <label for="player2Pokemon1">@player2Name's Pokemons: </label>
                     </div>
-                    <div>
+                    <div id="selection2">
                         <select id="player2Pokemon1" name="player2Pokemon1">
                             <option value="" disabled selected style="display: none;"></option>
                             @for((pokemon, index) <- allPokemons.zipWithIndex) {
@@ -88,80 +88,9 @@
                 </div>
             </div>
             <div class="startButtonContainer">
-                <input class="confirmButton" type="button" value="CONFIRM" onclick="checkSelection()">
+                <input class="confirmButton" id="confirmButtonPokemons" type="button" value="CONFIRM">
             </div>
-        </form>
+        </div>
     </div>
-    <script>
-            const titleScreenMusic = document.getElementById("titleScreenMusic");
-            const buttonSound = document.getElementById("buttonSound");
-
-            titleScreenMusic.volume = 0.2;
-
-            function displayValidationAlert(message, inputId) {
-                let inputField = document.getElementById(inputId);
-                let alertDiv = document.createElement("div");
-                alertDiv.className = "alert alert-warning alert-dismissible fade show mt-1";
-                alertDiv.role = "alert";
-                alertDiv.innerHTML = message;
-                let closeButton = document.createElement("button");
-                closeButton.type = "button";
-                closeButton.className = "btn-close";
-                closeButton.setAttribute("data-bs-dismiss", "alert");
-                alertDiv.appendChild(closeButton);
-                inputField.parentNode.appendChild(alertDiv);
-
-                setTimeout(function () {
-                    alertDiv.classList.add("fade-out");
-                }, 2500);
-
-                setTimeout(function () {
-                    alertDiv.remove();
-                }, 7600);
-            }
-
-            function checkSelection() {
-                let player1Pokemon1 = $("#player1Pokemon1").val();
-                let player1Pokemon2 = $("#player1Pokemon2").val();
-                let player1Pokemon3 = $("#player1Pokemon3").val();
-
-                let player2Pokemon1 = $("#player2Pokemon1").val();
-                let player2Pokemon2 = $("#player2Pokemon2").val();
-                let player2Pokemon3 = $("#player2Pokemon3").val()
-
-                if ((player1Pokemon1.trim() === "" || player1Pokemon2.trim() === "" || player1Pokemon3.trim() === "")
-                && (player2Pokemon1.trim() === "" || player2Pokemon2.trim() === "" || player2Pokemon3.trim() === "" )) {
-                    displayValidationAlert("Please select your Pokemons player 1.", "selection1");
-                    displayValidationAlert("Please select your Pokemons player 2.", "selection2");
-                } else if (player1Pokemon1.trim() === "" || player1Pokemon2.trim() === "" || player1Pokemon3.trim() === "") {
-                    displayValidationAlert("Please select your Pokemons player 1.", "selection1");
-                } else if (player2Pokemon1.trim() === "" || player2Pokemon2.trim() === "" || player2Pokemon3.trim() === "") {
-                    displayValidationAlert("Please select your Pokemons player 2.", "selection2");
-                } else {
-                    buttonSound.play();
-
-                    setTimeout(() => {
-                        document.getElementById("pokemonForm").submit();
-                    }, 300);
-                }
-            }
-
-            document.addEventListener("DOMContentLoaded", () => {
-                if (titleScreenMusic) {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const storedPosition = urlParams.get('position');
-                    if (storedPosition !== null) {
-                        titleScreenMusic.currentTime = parseFloat(storedPosition);
-                        titleScreenMusic.play();
-                    }
-                }
-            });
-
-            document.addEventListener("DOMContentLoaded", function () {
-                setTimeout(() => {
-                    $("#loading-screen").hide();
-                }, 1000);
-            });
-
-    </script>
+    <script src="@routes.Assets.versioned("javascripts/playerPokemons.js")"></script>
 }

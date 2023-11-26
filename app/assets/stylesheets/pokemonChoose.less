@@ -3,6 +3,24 @@
   padding-bottom: 5vh;
 }
 
+.img-wrapper {
+  align-items: center;
+  border: 0.5vh solid dimgray;
+  background-color: #dddddd;
+  border-radius: 2vh;
+  color: @fontColour;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Pokemon Fire Red', sans-serif;
+  font-size: 3vh;
+  justify-content: space-around;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  text-align: center;
+  text-shadow: @textShadow;
+  text-transform: uppercase;
+}
+
 option {
   font-family: 'Pokemon Fire Red', sans-serif;
   font-size: 2.3vh;
@@ -22,8 +40,12 @@ option:hover {
 }
 
 .pokemonLabel {
+  font-family: 'Pokemon Fire Red', sans-serif;
+  font-size: 4vh;
   margin-top: 1vh;
   margin-bottom: -1vh;
+  text-shadow: @textShadow;
+  text-transform: uppercase;
 }
 
 .pokemonSelection {
@@ -33,26 +55,24 @@ option:hover {
   color: @fontColour;
   display: flex;
   flex-direction: column;
-  font-family: 'Pokemon Fire Red', sans-serif;
-  font-size: 4vh;
   height: 13.8vh;
+  margin-left: 4vh;
+  margin-right: 4vh;
   margin-top: 1vh;
-  text-shadow: @textShadow;
-  text-transform: uppercase;
   width: 52.2vh;
 }
 
 .pokemonSelectionContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 select {
   border-radius: 1vh;
   color: @fontColour;
-  font-family: 'Pokemon Fire Red', sans-serif;
-  font-size: 3vh !important;
+  font-family: 'Pokemon Fire Red', sans-serif !important;
+  font-size: 3.1vh !important;
   height: 4.5vh;
   text-transform: uppercase !important;
   text-shadow: @textShadow;
@@ -68,23 +88,5 @@ select {
 
 .startButtonContainer {
   .confirmButtonContainer;
-  margin-top: 3vh;
-}
-
-.img-wrapper {
-  align-items: center;
-  border: 0.5vh solid dimgray;
-  background-color: #dddddd;
-  border-radius: 2vh;
-  color: @fontColour;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Pokemon Fire Red', sans-serif;
-  font-size: 3vh;
-  justify-content: space-around;
-  padding-left: 1vh;
-  padding-right: 1vh;
-  text-align: center;
-  text-shadow: @textShadow;
-  text-transform: uppercase;
+  padding-top: 3vh;
 }

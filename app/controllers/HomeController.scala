@@ -2,13 +2,14 @@ package controllers
 
 import de.htwg.se.pokelite.controller.impl.Controller
 import de.htwg.se.pokelite.model.impl.pokePlayer.PokePlayer
-import de.htwg.se.pokelite.model.{PokePack, Pokemon, PokemonType}
+import de.htwg.se.pokelite.model.{AttackType, PokePack, Pokemon, PokemonType, PokemonArt}
 import de.htwg.se.pokelite.model.PokemonType.{Glurak, Simsala}
 import de.htwg.se.pokelite.model.states.{DesicionState, FightingState, GameOverState, InitPlayerPokemonState, InitPlayerState, InitState, SwitchPokemonState}
 
 import javax.inject._
 import play.api.mvc._
 import play.api.libs.json._
+
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -37,6 +38,36 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
                 }
             }
         )
+    /*implicit val playerNameWrites: Writes[PokePlayer] = new Writes[PokePlayer] {
+        override def writes(p: PokePlayer): JsValue = Json.obj(
+            "name" -> p.name
+        )
+    }
+
+    implicit val pokemonTypeWrites: Writes[PokemonType] = new Writes[PokemonType] {
+        override def writes(pokemonType: PokemonType): JsValue = Json.obj(
+            "name" -> pokemonType.name,
+            "hp" -> pokemonType.hp,
+            "attacks" -> Json.toJson(pokemonType.attacks),
+            "pokemonArt" -> Json.toJson(pokemonType.pokemonArt)
+        )
+    }
+
+    implicit val attackTypeWrites: Writes[AttackType] = new Writes[AttackType] {
+        override def writes(attackType: AttackType): JsValue = Json.obj(
+            "name" -> attackType.name,
+            "damage" -> attackType.damage
+        )
+    }
+
+    implicit val pokemonArtWrites: Writes[PokemonArt] = new Writes[PokemonArt] {
+        override def writes(pokemonArt: PokemonArt): JsValue = Json.obj(
+            "name" -> pokemonArt.toString
+        )
+    }*/
+
+    def desicion(): Action[AnyContent] = Action { request =>
+        val input = request.getQueryString("input").getOrElse("")
 
     }
 
@@ -107,31 +138,44 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
         Ok(views.html.index())
     }
 
-    def initPlayers(): Action[AnyContent] = Action { implicit request =>
-        val player1Name = request.body.asFormUrlEncoded.get("player1Name").mkString
-        val player2Name = request.body.asFormUrlEncoded.get("player2Name").mkString
-        val allPokemons = PokemonType.values
+    def initPlayers(): Action[JsValue] = Action(parse.json) { implicit request => //parsing the request body explicitly as JSON
+        val player1Name = (request.body \ "player1Name").as[String]
+        val player2Name = (request.body \ "player2Name").as[String]
 
         controller.initPlayers()
         controller.addPlayer(player1Name)
         controller.addPlayer(player2Name)
 
-        Ok(views.html.playerPokemons(player1Name, player2Name, allPokemons))
+        val redirectUrl = routes.HomeController.playerPokemons.url
+
+        Ok(Json.obj(
+            "redirect" -> redirectUrl
+        )).as("application/json")
     }
 
-    def initPokemons(): Action[AnyContent] = Action { implicit request =>
-        val player1Pokemon1 = request.body.asFormUrlEncoded.get("player1Pokemon1").mkString
-        val player1Pokemon2 = request.body.asFormUrlEncoded.get("player1Pokemon2").mkString
-        val player1Pokemon3 = request.body.asFormUrlEncoded.get("player1Pokemon3").mkString
-        val player2Pokemon1 = request.body.asFormUrlEncoded.get("player2Pokemon1").mkString
-        val player2Pokemon2 = request.body.asFormUrlEncoded.get("player2Pokemon2").mkString
-        val player2Pokemon3 = request.body.asFormUrlEncoded.get("player2Pokemon3").mkString
+    def playerPokemons(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+        val player1Name = controller.game.player1.getOrElse("Player1").toString
+        val player2Name = controller.game.player2.getOrElse("Player2").toString
 
+        Ok(views.html.playerPokemons(player1Name, player2Name, PokemonType.values))
+    }
+
+    def initPokemons(): Action[JsValue] = Action(parse.json) { implicit request =>
+        val player1Pokemon1 = (request.body \ "player1Pokemon1").as[String]
+        val player1Pokemon2 = (request.body \ "player1Pokemon2").as[String]
+        val player1Pokemon3 = (request.body \ "player1Pokemon3").as[String]
+        val player2Pokemon1 = (request.body \ "player2Pokemon1").as[String]
+        val player2Pokemon2 = (request.body \ "player2Pokemon2").as[String]
+        val player2Pokemon3 = (request.body \ "player2Pokemon3").as[String]
 
         controller.addPokemons(player1Pokemon1 + player1Pokemon2 + player1Pokemon3)
         controller.addPokemons(player2Pokemon1 + player2Pokemon2 + player2Pokemon3)
 
-        Redirect(routes.HomeController.game)
+        val redirectUrl = routes.HomeController.game.url
+
+        Ok(Json.obj(
+            "redirect" -> redirectUrl
+        )).as("application/json")
     }
 
     def playerNames(): Action[AnyContent] = Action {
