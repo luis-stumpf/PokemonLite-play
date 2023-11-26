@@ -8,22 +8,25 @@
             </div>
         </div>
         <div class="row">
-                <div class="playerNamesContainer">
-                    <div class="playerName1">
-                        <label class="playerName-label" for="player1Name">PLAYER 1  ?</label>
-                        <input class="inputNames" type="text" id="player1Name" name="player1Name" required>
-                        <span class="cursor" id="cursor1">_</span>
-                    </div>
-                    <br>
-                    <div class="playerName2">
-                        <label class="playerName-label" for="player2Name">PLAYER 2  ?</label>
-                        <input class="inputNames" type="text" id="player2Name" name="player2Name" required>
-                        <span class="cursor" id="cursor2">_</span>
-                    </div>
+            <div class="playerNamesContainer">
+                <div class="playerName1">
+                    <label class="playerName-label" for="player1Name">PLAYER 1  ?</label>
+                    <input class="inputNames" type="text" id="player1Name" name="player1Name" required>
+                    <span class="cursor" id="cursor1">_</span>
                 </div>
-                <div class="confirmButtonContainer">
-                    <input class="confirmButton" id="confirmButton" type="button" value="CONFIRM">
+                <br>
+                <div class="playerName2">
+                    <label class="playerName-label" for="player2Name">PLAYER 2  ?</label>
+                    <input class="inputNames" type="text" id="player2Name" name="player2Name" required>
+                    <span class="cursor" id="cursor2">_</span>
                 </div>
+            </div>
+            <div class="confirmButtonContainer">
+                <input class="confirmButton" id="confirmButton" type="button" value="CONFIRM">
+            </div>
+            <div style="display: flex; flex-direction: column;  align-items: center;">
+                <span class="confirm-shadow"></span>
+            </div>
         </div>
     </div>
     <script src="@routes.Assets.versioned("javascripts/playerNames.js")"></script>
