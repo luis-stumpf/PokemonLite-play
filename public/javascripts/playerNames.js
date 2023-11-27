@@ -50,6 +50,23 @@ $(document).ready(function () {
 
         const position = titleScreenMusic.currentTime;
 
+        $.ajax({
+            url: 'http://localhost:9000/playerNames',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                player1Name: player1Name,
+                player2Name: player2Name,
+            }),
+            success: function (data) {
+                window.location.href = `${data.redirect}?position=${position}`;
+            },
+            error: function (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        /*
         fetch(`http://localhost:9000/playerNames`, {
             method: "POST",
             headers: {
@@ -65,5 +82,6 @@ $(document).ready(function () {
             }).catch(error => {
             console.error("Error:", error);
         });
+         */
     }
 });
