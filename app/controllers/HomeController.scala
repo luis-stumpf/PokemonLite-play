@@ -19,27 +19,61 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
 
     val controller: Controller = Controller()
 
-    def desicion(): Action[AnyContent] = Action { request =>
-        val input = request.getQueryString("input").getOrElse("")
+    def decision(): Action[AnyContent] = Action { request =>
+        val move  = (request.body.asJson.get \ "move").validate[Int]
+        move.fold(
+            errors => {
+                BadRequest(Json.obj("status" -> "OK", "message" -> JsError.toJson(errors)))
+            },
+            move => {
+                if (0 < move && move < 3) {
+                    print(move.toString)
+                    print(controller.game.state)
+                    controller.nextMove(move.toString)
+                    Ok("move accepted")
+                }
+                else {
+                    BadRequest("move not accepted")
+                }
+            }
+        )
 
-        controller.nextMove(input)
-
-        Redirect(routes.HomeController.field)
-    }
-
-    def field(): Action[AnyContent] = Action {
-        val gameString = controller.game.toString
-        val gameField = views.html.field(gameString, controller.game.state.toString, controller.game.turn)
-
-        Ok(gameField)
     }
 
     def fighting(): Action[AnyContent] = Action { request =>
-        val input = request.getQueryString("input").getOrElse("")
+        val move  = (request.body.asJson.get \ "move").validate[Int]
+        move.fold(
+            errors => {
+                BadRequest(Json.obj("status" -> "OK", "message" -> JsError.toJson(errors)))
+            },
+            move => {
+                if (0 < move && move < 5) {
+                    controller.attackWith(move.toString)
+                    Ok("move accepted")
+                }
+                else {
+                    BadRequest("move not accepted")
+                }
+            }
+        )
+    }
 
-        controller.attackWith(input)
-
-        Redirect(routes.HomeController.field)
+    def switch(): Action[AnyContent] = Action { request =>
+        val move  = (request.body.asJson.get \ "move").validate[Int]
+        move.fold(
+            errors => {
+                BadRequest(Json.obj("status" -> "OK", "message" -> JsError.toJson(errors)))
+            },
+            move => {
+                if (0 < move && move < 5) {
+                    controller.selectPokemon(move.toString)
+                    Ok("move accepted")
+                }
+                else {
+                    BadRequest("move not accepted")
+                }
+            }
+        )
     }
 
     def gameJson(): Action[AnyContent] = Action { implicit request =>
@@ -48,24 +82,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     }
 
     def game(): Action[AnyContent] = Action { implicit request =>
-        val command = request.getQueryString("command")
-        val input: String = command.getOrElse("")
 
-        if (input.nonEmpty)
-            if (input.charAt(0) == 'y') controller.undoMove()
-            else if (input.charAt(0) == 'z') controller.redoMove()
-            else
-                controller.game.state match {
-                    case InitState() => controller.initPlayers()
-                    case InitPlayerState() => controller.addPlayer(input)
-                    case InitPlayerPokemonState() => controller.addPokemons(input)
-                    case DesicionState() => controller.nextMove(input)
-                    case FightingState() => controller.attackWith(input)
-                    case SwitchPokemonState() => controller.selectPokemon(input)
-                    case GameOverState() => controller.restartTheGame()
-                }
-
-        val gameString = controller.game.toString
         val PokePlayer(namePlayer1, pokemonsPlayer1, currentPokePlayer1) = controller.game.player1.getOrElse( PokePlayer( "Luis", PokePack( List( Some( Pokemon.apply( Glurak ) ) ) ) ) )
         val PokePlayer(namePlayer2, pokemonsPlayer2, currentPokePlayer2) = controller.game.player2.getOrElse( PokePlayer( "Timmy", PokePack( List( Some( Pokemon.apply( Simsala ) ) ) ) ) )
 
@@ -73,7 +90,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
         val currentPokemonPlayer2 = pokemonsPlayer2.contents.apply(currentPokePlayer2).get
 
         val gameField = views.html.game(
-            gameString,
             controller.game.state.toString,
             controller.game.turn,
             namePlayer1,
@@ -125,18 +141,12 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     def restartGame(): Action[AnyContent] = Action {
         controller.restartTheGame()
 
-        Redirect(routes.HomeController.field)
+        Redirect(routes.HomeController.index())
+
     }
 
     def rules(): Action[AnyContent] = Action {
         Ok(views.html.rules())
     }
 
-    def switch(): Action[AnyContent] = Action { request =>
-        val input = request.getQueryString("input").getOrElse("")
-
-        controller.selectPokemon(input)
-
-        Redirect(routes.HomeController.field)
-    }
 }

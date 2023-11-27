@@ -1,36 +1,36 @@
 @import de.htwg.se.pokelite.model.Pokemon
 @import de.htwg.se.pokelite.model.PokePack
-@(tui: String, gameState: String, turn: Int, player1Name: String, player2Name: String, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
+@(gameState: String, turn: Int, player1Name: String, player2Name: String, pokemonPlayer1: Pokemon, pokemonPlayer2: Pokemon, pokePackPlayer1: PokePack, pokePackPlayer2: PokePack)
 
 @main("PokemonLite") {
-    @loadingScreen()<!-- TO DO: add "game" and find pretty game loading screen-->
     @navbar("game")
     @audio("game")
+    @gameState
     <div class="container">
         <div class="image-container">
             <img class="" src="@routes.Assets.versioned("images/gamefield.jpg")">
             <div class="overlay-content">
                 <div class="row h-50">
-                    <div class="col">
-                        @playerStatus(pokemon = pokemonPlayer2)
+                    <div id="player-2-status" class="col">
+                        @playerStatus(pokemon = pokemonPlayer2, player = 2)
                     </div>
-                    <div class="col position-relative">
+                    <div id="player-2-pokemon" class="col position-relative">
                         @pokemonFront(pokemon = pokemonPlayer2.toString)
                     </div>
                 </div>
                 <div class="row h-50">
-                    <div class="col position-relative">
+                    <div id="player-1-pokemon" class="col position-relative">
                         @pokemonBack(pokemon = pokemonPlayer1.toString)
                     </div>
-                    <div class="col">
-                        @playerStatus(pokemon = pokemonPlayer1)
+                    <div id="player-1-status" class="col">
+                        @playerStatus(pokemon = pokemonPlayer1, player = 1)
                     </div>
                 </div>
             </div>
         </div>
 
     <div class="container">
-        <div class="mx-auto menu-field">
+        <div id="menu-field" class="mx-auto menu-field">
             <div class="turn">
                 @if(turn == 1) {
                     It's your turn @player1Name !
@@ -54,12 +54,4 @@
     </div>
 </div>
 
-    <script>
-            document.addEventListener("DOMContentLoaded", function () {
-
-                setTimeout(() => {
-                    document.getElementById("loading-screen").style.display = "none";
-                }, 1000);
-            });
-    </script>
 }

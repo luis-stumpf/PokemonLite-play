@@ -6,31 +6,32 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
 
-GET     /rules                      controllers.HomeController.rules
+GET     /rules                      controllers.HomeController.rules()
 
-GET     /playerNames                controllers.HomeController.playerNames
+GET     /playerNames                controllers.HomeController.playerNames()
 
-GET     /game                       controllers.HomeController.game
+GET     /game                       controllers.HomeController.game()
 
-GET     /restart                    controllers.HomeController.restartGame
-
-+nocsrf
-POST    /initPlayers                       controllers.HomeController.initPlayers
-GET     /initPlayers                       controllers.HomeController.initPlayers
+GET     /restart                    controllers.HomeController.restartGame()
 
 +nocsrf
-POST    /initPokemons                       controllers.HomeController.initPokemons
-GET     /initPokemons                       controllers.HomeController.initPokemons
+POST    /initPlayers                       controllers.HomeController.initPlayers()
+GET     /initPlayers                       controllers.HomeController.initPlayers()
 
-GET     /desicion                       controllers.HomeController.desicion
++nocsrf
+POST    /initPokemons                       controllers.HomeController.initPokemons()
+GET     /initPokemons                       controllers.HomeController.initPokemons()
 
-GET     /fighting                       controllers.HomeController.fighting
++nocsrf
+POST     /api/decision                       controllers.HomeController.decision()
 
-GET     /switch                       controllers.HomeController.switch
++nocsrf
+POST     /api/fighting                       controllers.HomeController.fighting()
 
-GET     /field                       controllers.HomeController.field
++nocsrf
+POST     /api/switch                       controllers.HomeController.switch()
 
-GET     /gameJson                       controllers.HomeController.gameJson
+GET      /api/gameJson                       controllers.HomeController.gameJson()
 
 
 # Map static resources from the /public folder to the /assets URL path

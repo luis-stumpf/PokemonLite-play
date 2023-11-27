@@ -2,13 +2,11 @@
 @(pokePack: PokePack)
 <div class="menu-wrapper">
     @for((pokemon, index) <- pokePack.contents.zipWithIndex) {
-        <a class="switch-link" href="/game?command=@(index + 1)">
-            <button class="pokemon-button small">
-                <img class="img-fluid" src="@routes.Assets.versioned("images/pokemons/" + pokemon.get.pType.name +"Front.gif")" style="width: 10vh;" alt="">
-                @pokemon.get.pType.name
-                <br>
-                HP: @pokemon.get.hp
-            </button>
-        </a>
+        <button onclick="onSwitch(@index)" class="pokemon-button small">
+            <img class="img-fluid" src="@routes.Assets.versioned("images/pokemons/" + pokemon.get.pType.name +"Front.gif")" style="width: 10vh;" alt="">
+            @pokemon.get.pType.name
+            <br>
+            HP: @pokemon.get.hp
+        </button>
     }
 </div>

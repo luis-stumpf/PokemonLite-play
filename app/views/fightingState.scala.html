@@ -1,28 +1,7 @@
 @import de.htwg.se.pokelite.model.Pokemon
 @(pokemon: Pokemon, isTurn: Int)
 <div class="menu-wrapper">
-    <button onclick="attack(1)" class="attack-button button-style fight-button small">@pokemon.pType.attacks.head.toString</button>
-    <button onclick="attack(2)" class="attack-button button-style fight-button small">@pokemon.pType.attacks.apply(1).toString</button>
-    <button onclick="attack(3)" class="attack-button button-style fight-button small">@pokemon.pType.attacks.apply(2).toString</button>
-    <button onclick="attack(4)" class="attack-button button-style fight-button small">@pokemon.pType.attacks.apply(3).toString</button>
-</div>
-<script>
-    function attack(attackId) {
-        const pokemonType = "@pokemon.pType.pokemonArt.toString";
-        let toShow = "punch"
-        if (pokemonType === "Feuer") {
-            toShow = "fire"
-        } else if (pokemonType === "Wasser") {
-            toShow = "bubbles"
-        }
-        if ("@isTurn" === "1") {
-            toShow = toShow + "2"
-        } else {
-            toShow = toShow + "1"
-        }
-        $(`#${toShow}`).show()
-        setTimeout(function () {
-            window.location = `/game?command=${attackId}`
-        }, 2500);
+    @for((attack, index) <- pokemon.pType.attacks.zipWithIndex) {
+        <button onclick="onAttack(@(index + 1), '@pokemon.pType.pokemonArt.toString', @isTurn)" class="attack-button button-style fight-button small">@attack.toString</button>
     }
-</script>
+</div>

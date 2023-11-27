@@ -1,10 +1,11 @@
 @import de.htwg.se.pokelite.model.Pokemon
-@(pokemon: Pokemon)
+@(pokemon: Pokemon, player: Int)
 <div class="pokemon-status">
     <div class="pokemon-name">
         @pokemon.pType.name
     </div>
-        <div class="pokemon-health">
-            HP: @pokemon.getHp / @pokemon.pType.hp
-        </div>
+    <div class="pokemon-health-background">
+        <div id="bar-p-@{player}" class="pokemon-health-bar" style="width: @(f"${(pokemon.hp.toDouble / pokemon.pType.hp) * 100}%.0f" + "%");"></div>
+    </div>
+    @(pokemon.hp + "/" + pokemon.pType.hp)
 </div>
