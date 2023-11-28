@@ -38,6 +38,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
                 }
             }
         )
+    }
     /*implicit val playerNameWrites: Writes[PokePlayer] = new Writes[PokePlayer] {
         override def writes(p: PokePlayer): JsValue = Json.obj(
             "name" -> p.name
@@ -65,11 +66,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
             "name" -> pokemonArt.toString
         )
     }*/
-
-    def desicion(): Action[AnyContent] = Action { request =>
-        val input = request.getQueryString("input").getOrElse("")
-
-    }
 
     def fighting(): Action[AnyContent] = Action { request =>
         val move  = (request.body.asJson.get \ "move").validate[Int]
