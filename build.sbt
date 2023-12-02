@@ -10,6 +10,7 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
         guice,
         "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
-        "org.playframework" %% "play-json" % "3.0.1"
+        "org.playframework" %% "play-json" % "3.0.1",
+        "org.scala-lang.modules" %% "scala-swing" % "2.1.1"
     )
   )

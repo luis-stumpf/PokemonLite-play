@@ -11,7 +11,6 @@ const onAttack = (attackId, pokemonArt, turn) => {
         contentType: 'application/json; charset=utf-8',
         success: data => {
             showAttackAnimation(pokemonArt, turn);
-            updateGamefield(ids);
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -28,7 +27,6 @@ const onDecide = (value) => {
         }),
         contentType: 'application/json; charset=utf-8',
         success: data => {
-            updateGamefield(ids)
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -45,7 +43,6 @@ $.ajax({
         }),
         contentType: 'application/json; charset=utf-8',
         success: data => {
-            updateGamefield(idsWithGif)
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);

@@ -1,14 +1,23 @@
 package controllers
 
+import akka.actor.ActorSystem
+import akka.stream.Materializer
+import akka.actor._
+import de.htwg.se.pokelite.controller.{AttackEvent, GameOver, PlayerChanged, PokemonChanged, StateChanged, UnknownCommand}
 import de.htwg.se.pokelite.controller.impl.Controller
 import de.htwg.se.pokelite.model.impl.pokePlayer.PokePlayer
-import de.htwg.se.pokelite.model.{AttackType, PokePack, Pokemon, PokemonType, PokemonArt}
+import de.htwg.se.pokelite.model.{AttackType, PokePack, Pokemon, PokemonArt, PokemonType}
 import de.htwg.se.pokelite.model.PokemonType.{Glurak, Simsala}
+import de.htwg.se.pokelite.model.commands.{AddPokemonCommand, ChangeStateCommand}
 import de.htwg.se.pokelite.model.states.{DesicionState, FightingState, GameOverState, InitPlayerPokemonState, InitPlayerState, InitState, SwitchPokemonState}
+import de.htwg.se.pokelite.util.Observer
 
 import javax.inject._
 import play.api.mvc._
 import play.api.libs.json._
+import play.api.libs.streams.ActorFlow
+
+import scala.swing.Reactor
 
 
 /**
@@ -16,9 +25,9 @@ import play.api.libs.json._
  * application's home page.
  */
 @Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
+class HomeController @Inject()(val controllerComponents: ControllerComponents, implicit val system: ActorSystem) extends BaseController {
 
-    val controller: Controller = Controller()
+    val controller: Controller = new Controller()
 
     def decision(): Action[AnyContent] = Action { request =>
         val move  = (request.body.asJson.get \ "move").validate[Int]
@@ -28,8 +37,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
             },
             move => {
                 if (0 < move && move < 3) {
-                    print(move.toString)
-                    print(controller.game.state)
                     controller.nextMove(move.toString)
                     Ok("move accepted")
                 }
@@ -187,6 +194,56 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
 
     def rules(): Action[AnyContent] = Action {
         Ok(views.html.rules())
+    }
+
+    def socket() = WebSocket.accept[String, String] { request =>
+        ActorFlow.actorRef { out =>
+            println("Connect received")
+            PokemonLiteWebSocketActor.create(out)
+        }
+    }
+
+    object PokemonLiteWebSocketActor {
+        def create(out: ActorRef) = {
+            Props(new PokemonLiteWebSocketActor(out))
+        }
+    }
+
+
+    class PokemonLiteWebSocketActor(out: ActorRef) extends Actor with Reactor {
+
+        listenTo(controller)
+
+        def receive: Receive = {
+            case msg: String =>
+                out ! (controller.game.toJson)
+                println("Send Json to client" + msg)
+            case _ => println("Unknown Message")
+        }
+
+        reactions += {
+            case event: StateChanged => sendUpdateGamefield()
+            case event: PlayerChanged => sendJsonToClient()
+            case event: GameOver => sendJsonToClient()
+            case event: PokemonChanged => sendUpdateGamefieldWithGifs()
+            case event: AttackEvent => sendUpdateGamefield()
+            case event: UnknownCommand => sendJsonToClient()
+            case _ => sendJsonToClient()
+
+        }
+
+        def sendJsonToClient(): Unit = {
+            out ! ("test")
+        }
+
+        def sendUpdateGamefield(): Unit = {
+            if (controller.game.state != InitPlayerState()) out ! ("updateGamefield")
+        }
+
+        def sendUpdateGamefieldWithGifs(): Unit = {
+            out ! ("updateGamefieldWithGifs")
+        }
+
     }
 
 }

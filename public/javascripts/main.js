@@ -30,3 +30,31 @@ function displayValidationAlert(message, inputId) {
         alertDiv.remove();
     }, 7600);
 }
+
+connectWebSocket()
+function connectWebSocket() {
+    let websocket = new WebSocket("ws://localhost:9000/websocket");
+
+    websocket.onopen = function(event) {
+        console.log("Connected to Websocket");
+    }
+
+    websocket.onclose = function () {
+        console.log('Connection with Websocket Closed!');
+    };
+
+    websocket.onerror = function (error) {
+        console.log('Error in Websocket Occured: ' + error);
+    };
+
+    websocket.onmessage = function (e) {
+        switch (e.data) {
+            case "updateGamefield":
+                updateGamefield(ids)
+                break;
+            case "updateGamefieldWithGifs":
+                updateGamefield(idsWithGif)
+                break;
+        }
+    }
+}
