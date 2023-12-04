@@ -96,6 +96,12 @@
                             <span class="navBarFont">Rules & History</span>
                         </a>
                     </li>
+                    @if(currentPage == "game") {
+                        <button type="button" class="chat-button btn hoverable" id="chatButton">
+                            <i class="bi bi-chat-dots"></i>
+                            <span class="navBarFont">Chat</span>
+                        </button>
+                    }
                 }
             }
         </ul>

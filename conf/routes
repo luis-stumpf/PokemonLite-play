@@ -6,7 +6,15 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
 
+GET     /chat                       controllers.HomeController.chat
+
 GET     /rules                      controllers.HomeController.rules()
+
++nocsrf
+POST     /getChat                    controllers.HomeController.getChat
+
++nocsrf
+POST    /sendChat                   controllers.HomeController.receiveMsg
 
 +nocsrf
 POST    /playerNames                       controllers.HomeController.initPlayers

@@ -1,6 +1,12 @@
 const ids = [ "#player-1-status", "#player-2-status", "#menu-field" ]
 const idsWithGif = [ "#player-1-status", "#player-2-status", "#menu-field", "#player-1-pokemon", "#player-2-pokemon" ]
 
+$('#chatButton').click(function () {
+    let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+width=500vh,height=450vh,left=-500,top=-500`;
+    window.open('/chat', 'chat', params)
+});
+
 const onAttack = (attackId, pokemonArt, turn) => {
     $.ajax({
         url: '/api/fighting',

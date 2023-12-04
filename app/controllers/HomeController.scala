@@ -29,6 +29,41 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
 
     val controller: Controller = new Controller()
 
+    var timestamp = 0
+    var lastMsg = ""
+
+    def chat: Action[AnyContent] = Action {
+        implicit request => {
+            Ok(views.html.chat())
+        }
+    }
+
+    def receiveMsg: Action[AnyContent] = Action {
+        implicit request => {
+            println("received")
+            val req = request.body.asJson
+            val msg = req.get("msg").toString()
+            timestamp += 1
+            lastMsg = msg
+            Ok(Json.obj(
+                "timestamp" -> timestamp.toString)
+            )
+        }
+    }
+
+    def getChat: Action[AnyContent] = Action {
+        implicit request => {
+
+            val req = request.body.asJson
+            val ts = req.get("timestamp").toString()
+            while (ts.equals("\"" + timestamp.toString + "\"")) {}
+            Ok(Json.obj(
+                "timestamp" -> timestamp.toString,
+                "msg" -> lastMsg)
+            )
+        }
+    }
+
     def decision(): Action[AnyContent] = Action { request =>
         val move  = (request.body.asJson.get \ "move").validate[Int]
         move.fold(
