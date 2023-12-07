@@ -92,6 +92,26 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
 
         Ok("ok")
     }
+
+    def initPlayerPokemons(): Action[JsValue] = Action(parse.json) { implicit request =>
+        /*
+        val player1Pokemon1 = (request.body \ "player1Pokemon1").as[String]
+        val player1Pokemon2 = (request.body \ "player1Pokemon2").as[String]
+        val player1Pokemon3 = (request.body \ "player1Pokemon3").as[String]
+        val player2Pokemon1 = (request.body \ "player2Pokemon1").as[String]
+        val player2Pokemon2 = (request.body \ "player2Pokemon2").as[String]
+        val player2Pokemon3 = (request.body \ "player2Pokemon3").as[String]
+        */
+
+        val playerPokemons1 = (request.body \ "playerPokemons1").as[Array[Int]].mkString("")
+        val playerPokemons2 = (request.body \ "playerPokemons2").as[Array[Int]].mkString("")
+
+        controller.addPokemons(playerPokemons1)
+        controller.addPokemons(playerPokemons2)
+
+        Ok("ok")
+    }
+
     /*implicit val playerNameWrites: Writes[PokePlayer] = new Writes[PokePlayer] {
         override def writes(p: PokePlayer): JsValue = Json.obj(
             "name" -> p.name
@@ -228,6 +248,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
         val player2Pokemon1 = (request.body \ "player2Pokemon1").as[String]
         val player2Pokemon2 = (request.body \ "player2Pokemon2").as[String]
         val player2Pokemon3 = (request.body \ "player2Pokemon3").as[String]
+
 
         controller.addPokemons(player1Pokemon1 + player1Pokemon2 + player1Pokemon3)
         controller.addPokemons(player2Pokemon1 + player2Pokemon2 + player2Pokemon3)
