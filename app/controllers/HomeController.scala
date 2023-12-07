@@ -81,6 +81,17 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
             }
         )
     }
+
+    def initPlayerNames(): Action[JsValue] = Action(parse.json) { implicit request => //parsing the request body explicitly as JSON
+        val playerName1 = (request.body \ "playerName1").as[String]
+        val playerName2 = (request.body \ "playerName2").as[String]
+
+        controller.initPlayers()
+        controller.addPlayer(playerName1)
+        controller.addPlayer(playerName2)
+
+        Ok("ok")
+    }
     /*implicit val playerNameWrites: Writes[PokePlayer] = new Writes[PokePlayer] {
         override def writes(p: PokePlayer): JsValue = Json.obj(
             "name" -> p.name
@@ -150,6 +161,17 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
         Ok(gameJson)
     }
 
+
+    def stateJson(): Action[AnyContent] = Action { implicit request =>
+        val stateJson = controller.game.state.toJson
+        Ok(stateJson)
+    }
+    def allPokemonsJson() : Action[AnyContent] = Action { implicit request =>
+        val allPokemonsJson = PokemonType.values
+        println(allPokemonsJson.mkString("Array(", ", ", ")"))
+        Ok("ok")
+    }
+
     def game(): Action[AnyContent] = Action { implicit request =>
 
         val PokePlayer(namePlayer1, pokemonsPlayer1, currentPokePlayer1) = controller.game.player1.getOrElse( PokePlayer( "Luis", PokePack( List( Some( Pokemon.apply( Glurak ) ) ) ) ) )
@@ -175,6 +197,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
     def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
         Ok(views.html.index())
     }
+
 
     def initPlayers(): Action[JsValue] = Action(parse.json) { implicit request => //parsing the request body explicitly as JSON
         val player1Name = (request.body \ "player1Name").as[String]

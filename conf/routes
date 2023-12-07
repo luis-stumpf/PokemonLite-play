@@ -45,7 +45,17 @@ POST     /api/fighting                       controllers.HomeController.fighting
 +nocsrf
 POST     /api/switch                       controllers.HomeController.switch()
 
++nocsrf
 GET      /api/gameJson                       controllers.HomeController.gameJson()
+
++nocsrf
+GET      /api/allPokemonsJson                       controllers.HomeController.allPokemonsJson()
+
++nocsrf
+GET      /api/stateJson                       controllers.HomeController.stateJson()
+
++nocsrf
+POST    /api/initPlayerNames                       controllers.HomeController.initPlayerNames()
 
 GET      /websocket                       controllers.HomeController.socket()
 
