@@ -187,9 +187,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
         Ok(stateJson)
     }
     def allPokemonsJson() : Action[AnyContent] = Action { implicit request =>
-        val allPokemonsJson = PokemonType.values
-        println(allPokemonsJson.mkString("Array(", ", ", ")"))
-        Ok("ok")
+        val allPokemonsAsJson = Json.toJson(PokemonType.values.map(pokemon => pokemon.toJson))
+        Ok(allPokemonsAsJson)
     }
 
     def game(): Action[AnyContent] = Action { implicit request =>
