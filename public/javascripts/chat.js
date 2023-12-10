@@ -33,7 +33,7 @@ function connect() {
         },
         complete : function() {
             if (!self.noerror) {
-                setTimeout(function(){ connect(); }, 500);
+                setTimeout(function(){ connect(); }, 1000);
             }else {
                 connect();
             }

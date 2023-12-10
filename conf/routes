@@ -60,6 +60,9 @@ POST    /api/initPlayerNames                       controllers.HomeController.in
 +nocsrf
 POST    /api/initPlayerPokemons                       controllers.HomeController.initPlayerPokemons()
 
++nocsrf
+GET    /api/getChatMessages                       controllers.HomeController.getChatMessages()
+
 GET      /websocket                       controllers.HomeController.socket()
 
 # Map static resources from the /public folder to the /assets URL path

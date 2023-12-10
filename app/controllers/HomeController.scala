@@ -32,6 +32,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
     var timestamp = 0
     var lastMsg = ""
 
+    var chatMessages: List[String] = List()
+
     def chat: Action[AnyContent] = Action {
         implicit request => {
             Ok(views.html.chat())
@@ -110,6 +112,12 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
         controller.addPokemons(playerPokemons2)
 
         Ok("ok")
+    }
+
+    def getChatMessages: Action[AnyContent] = Action {
+        implicit request => {
+            Ok(Json.toJson(chatMessages))
+        }
     }
 
     /*implicit val playerNameWrites: Writes[PokePlayer] = new Writes[PokePlayer] {
@@ -265,6 +273,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
 
     def restartGame(): Action[AnyContent] = Action {
         controller.restartTheGame()
+        chatMessages = List()
 
         Redirect(routes.HomeController.index())
 
@@ -294,8 +303,10 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, i
 
         def receive: Receive = {
             case msg: String =>
-                out ! (controller.game.toJson)
+                chatMessages = chatMessages.appended(msg)
+                println(chatMessages)
                 println("Send Json to client" + msg)
+                out ! ("new message")
             case _ => println("Unknown Message")
         }
 
